@@ -43,6 +43,8 @@ func get_input(delta):
 			else:
 				mVelocity += tmp
 		mDirSpeed += mDirectionFacing * mVelocity * delta
+	else:
+		mVelocity *= Globals.VELOCITY_DAMPENING
 		
 	if Input.is_action_pressed("move_backwards"):
 		if (mVelocity > 0):
@@ -51,19 +53,32 @@ func get_input(delta):
 				mVelocity -= 0 - (mVelocity - tmp)	# Get Difference to 0
 			else:
 				mVelocity -= tmp
+				
+
+#Adjust Particle Emitters number of particles Emitting based on speed
+func handle_particles():
+	var particleHolder = self.get_child(4)
+	for i in particleHolder.get_child_count():
+		particleHolder.get_child(i).emitting = (mVelocity > 0)
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	get_input(delta)
 	
-	mDirSpeed *= .99	# Dampen Velocity
-	mRotVelocity *= .95
+	mDirSpeed *= Globals.SPEED_DAMPENING		# Dampen Direction Moving Velocity
+	mRotVelocity *= Globals.ROTATION_DAMPENING	
 	mRotationDir += mRotVelocity
 	
 	if (mRotationDir > 360):
 			mRotationDir -= 360
 	if (mRotationDir < 0):
 			mRotationDir += 360
+	if (mVelocity > 0):
+		if(mVelocity < Globals.PARTICLE_ACCELERATION_CUTOFF):
+			mVelocity = 0
+			
+	handle_particles()
 			
 	self.rotate(to_rad(mRotVelocity))
 	var radAngle = to_rad(mRotationDir)
