@@ -3,7 +3,7 @@ extends Node
 # Player Variables
 var MAX_HEALTH = 100
 var MAX_SHEILD = 50
-var MAX_VELOCITY_SPEED = 3.0
+var MAX_VELOCITY_SPEED = 6.0
 var MAX_ROTATION_SPEED = 10.0
 var PLAYER_PROJECTILE_SPEED = 4.0
 

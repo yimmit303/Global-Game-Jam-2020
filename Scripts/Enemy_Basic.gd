@@ -18,6 +18,7 @@ var decelleration_modifier = 2;
 
 #Values for constant manipulation
 var cooldown: float = 0;
+var cdown_short = 0;
 var velocity = 0;
 
 # Called when the node enters the scene tree for the first time.
@@ -27,14 +28,15 @@ func _ready():
 
 
 
-func fire_projectile(var cdown = .5):
+func fire_projectile(var cdown = .5) -> bool:
 	if self.cooldown > 0:
-		return;
+		return false;
 	var proj = projectile_prefab.instance();
 	proj.position = self.position;
 	proj.velocity = (self.global_transform.x * (self.velocity + 300));
 	self.get_parent().add_child(proj);
 	self.cooldown = cdown;
+	return true;
 
 
 
@@ -81,7 +83,15 @@ func pursue(var delta):
 	self.position += self.global_transform.x * self.velocity * delta;
 	
 	if abs(angle) < .2:
-		fire_projectile(1);
+		if cdown_short == 0:
+			if fire_projectile(.15):
+				cdown_short = 1;
+		elif cdown_short == 1:
+			if fire_projectile(.15):
+				cdown_short = 2;
+		elif cdown_short == 2:
+			if fire_projectile(.75):
+				cdown_short = 0;
 
 
 
