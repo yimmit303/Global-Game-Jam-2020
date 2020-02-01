@@ -1,9 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/ship_node.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Sprites/Ship.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Sprites/ShipExhaust2.png" type="Texture" id=4]
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.00490196, 0.996622 ), 0.0, 0.161568, 0, 0, Vector2( 1, 0 ), -3.33875, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
 
 [sub_resource type="ParticlesMaterial" id=2]
 lifetime_randomness = 0.1
@@ -21,6 +27,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = 5.0
 radial_accel = 27.4
+scale_curve = SubResource( 4 )
 color = Color( 0.905882, 0, 1, 1 )
 hue_variation = 0.24
 hue_variation_random = 0.41
