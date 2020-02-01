@@ -18,6 +18,24 @@ shadow_enabled = true
 shadow_filter = 4
 shadow_filter_smooth = 3.1
 
+[node name="Light2D2" type="Light2D" parent="World"]
+position = Vector2( -846.352, 245.229 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+energy = 1.5
+shadow_enabled = true
+shadow_filter = 4
+shadow_filter_smooth = 3.1
+
+[node name="Light2D3" type="Light2D" parent="World"]
+position = Vector2( -787.977, -490.476 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+energy = 1.5
+shadow_enabled = true
+shadow_filter = 4
+shadow_filter_smooth = 3.1
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="World"]
 layer = 0
 
