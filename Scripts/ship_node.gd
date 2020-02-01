@@ -1,4 +1,4 @@
-extends CollisionPolygon2D
+extends Area2D
 
 var mNodeHealth = 100
 var mSheild = 0
@@ -16,7 +16,11 @@ func _on_Node_area_entered(area):
 	elif(area.has_method("get_val")):		# Attach Junk
 		var healAmt = area.get_val()
 		
+		# Handle Incrementing Health and Shield
 		if(mNodeHealth + healAmt > Globals.MAX_HEALTH):
-			var tmp = (mNodeHealth + healAmt) - 100
-			mNodeHealth += healAmt - tmp
-			mSheild += tmp
+			if(mSheild < Globals.MAX_SHEILD):
+				var tmp = (mNodeHealth + healAmt) - 100
+				mNodeHealth += healAmt - tmp
+				mSheild += mSheild + tmp - Globals.MAX_HEALTH
+		else:
+			mNodeHealth += healAmt
