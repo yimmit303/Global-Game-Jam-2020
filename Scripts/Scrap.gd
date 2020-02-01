@@ -3,6 +3,9 @@ extends Node2D
 var rot_speed
 var rot_dir
 var size
+var velocity
+var directionMoving
+var playerOwned = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,6 +16,9 @@ func _ready():
 	var dir_list = [-1, 1]
 	dir_list.shuffle()
 	rot_dir = dir_list[0]
+	
+	velocity = randf()
+	directionMoving = Vector2(rand_range(-1, 1), rand_range(-1, 1))
 	
 	var rand_index = randi() % Globals.SCRAP_DIR_LIST.size()
 	var scrap_dir = Globals.SCRAP_DIR_LIST[rand_index]
@@ -28,7 +34,9 @@ func _ready():
 
 
 func _process(delta):
+	velocity *= Globals.VELOCITY_DAMPENING
 	self.set_rotation_degrees(self.get_rotation_degrees() + rot_speed * delta * rot_dir)
+	self.set_position(self.get_position() + directionMoving * velocity * delta)
 
 func get_scrap_images(path):
 	var dir = Directory.new()
@@ -69,3 +77,10 @@ func generate_scrap_sprite(scrap_dir, scrap_layers):
 
 func get_value():
 	return size * 10
+	
+func modify_moving_dircetion(dirAmount, tractor, tractoring):
+	if(velocity < Globals.MAX_VELOCITY_SPEED and tractoring):
+		#velocity += delta * Globals.MAX_VELOCITY_SPEED
+		pass
+	
+	directionMoving += dirAmount * velocity
