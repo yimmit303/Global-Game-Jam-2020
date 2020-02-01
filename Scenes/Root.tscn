@@ -6,14 +6,34 @@
 
 [node name="Root" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 407.713, 252.657 )
-
-[node name="TestEnemy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 894.595, 63.1584 )
-goal = NodePath("../Player")
-
 [node name="World" type="Node2D" parent="."]
+position = Vector2( 205.601, 85.8556 )
 
 [node name="Light2D" type="Light2D" parent="World"]
+position = Vector2( -3.16309, -5.87433 )
 texture = ExtResource( 3 )
+shadow_enabled = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="World"]
+layer = 0
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="World/ParallaxBackground"]
+motion_scale = Vector2( 0, 0 )
+
+[node name="ColorRect" type="ColorRect" parent="World/ParallaxBackground/ParallaxLayer"]
+margin_left = -960.0
+margin_top = -540.0
+margin_right = 960.0
+margin_bottom = 540.0
+color = Color( 0, 0, 0.133333, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Player" parent="CanvasLayer" instance=ExtResource( 1 )]
+
+[node name="TestEnemy" parent="CanvasLayer" instance=ExtResource( 2 )]
+position = Vector2( 894.595, 63.1584 )
+goal = NodePath("../Player")
