@@ -11,9 +11,9 @@ var projectile_prefab = load("res://Scenes//Enemy_Projectile.tscn");
 #Fixed Values for movement
 var outer_diameter = 500;
 var inner_diameter = 300;
-var attack_speed: float = 4000;
+var attack_speed: float = 2000;
 var rotate_speed: float = 1
-var acceleration: float = 1000;
+var acceleration: float = 500;
 var decelleration_modifier = 2;
 
 #Values for constant manipulation
@@ -27,12 +27,14 @@ func _ready():
 
 
 
-func fire_projectile():
+func fire_projectile(var cdown = .5):
+	if self.cooldown > 0:
+		return;
 	var proj = projectile_prefab.instance();
 	proj.position = self.position;
-	proj.velocity = (self.global_transform.x * (self.velocity + 100));
+	proj.velocity = (self.global_transform.x * (self.velocity + 300));
 	self.get_parent().add_child(proj);
-	pass;
+	self.cooldown = cdown;
 
 
 
@@ -77,6 +79,9 @@ func pursue(var delta):
 		self.velocity -= delta * acceleration * self.decelleration_modifier;
 		
 	self.position += self.global_transform.x * self.velocity * delta;
+	
+	if abs(angle) < .2:
+		fire_projectile(1);
 
 
 
@@ -96,9 +101,7 @@ func attack(var delta):
 		
 	angle = self.get_angle_to(target.global_position);
 	
-	if self.cooldown <= 0:
-		fire_projectile();
-		self.cooldown = 1
+	fire_projectile()
 	
 	
 
