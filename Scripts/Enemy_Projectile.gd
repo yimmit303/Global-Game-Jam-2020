@@ -18,5 +18,4 @@ func _process(delta):
 
 func get_damage():
 	self.queue_free();
-	print("yeep")
 	return 5;
