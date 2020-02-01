@@ -1,3 +1,108 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/ship_node.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Sprites/Ship.png" type="Texture" id=2]
 
 [node name="Player" type="Node2D"]
+
+[node name="Ship" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node0" type="Area2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node0"]
+position = Vector2( -129.09, -95.4083 )
+scale = Vector2( 1, 0.987545 )
+polygon = PoolVector2Array( 111.003, 68.5764, 124.071, 68.5764, 124.02, 69.5463, 125.041, 69.5974, 125.041, 76.4376, 128.002, 76.4376, 128.053, 88.5357, 111.973, 88.5357, 111.973, 87.6169, 111.106, 87.6169, 111.106, 86.596, 110.085, 86.596, 110.085, 69.4953, 111.055, 69.4953 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node1" type="Area2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node1"]
+position = Vector2( -110.366, -95.4083 )
+scale = Vector2( 1, 0.987545 )
+polygon = PoolVector2Array( 111.401, 68.1798, 125.365, 68.249, 125.307, 69.2193, 126.381, 69.2193, 126.381, 70.1895, 127.34, 70.2189, 127.31, 75.3054, 126.352, 75.3054, 126.352, 76.3345, 125.423, 76.3639, 125.336, 80.3625, 126.352, 80.4213, 126.467, 88.4286, 109.374, 88.5085, 109.278, 70.33, 110.468, 70.2323, 110.404, 69.2549, 111.337, 69.2549 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2" type="Area2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node2"]
+position = Vector2( -110.293, -75.295 )
+scale = Vector2( 1, 0.987545 )
+polygon = PoolVector2Array( 111.324, 68.0429, 126.317, 68.0692, 126.247, 77.265, 127.195, 77.265, 127.207, 80.559, 111.351, 80.4333 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node3" type="Area2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node3"]
+position = Vector2( -126.387, -75.0843 )
+scale = Vector2( 1, 0.987545 )
+polygon = PoolVector2Array( 111.324, 68.0429, 127.433, 68.0042, 127.358, 80.1313, 110.39, 80.0915, 110.349, 76.0496, 111.43, 76.0918 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node4" type="Area2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node4"]
+position = Vector2( -127.68, -63.052 )
+scale = Vector2( 1, 0.987545 )
+polygon = PoolVector2Array( 111.554, 68.831, 111.641, 67.9447, 127.433, 68.0042, 127.358, 80.1313, 111.685, 80.0435, 111.772, 78.9356, 110.678, 78.9356, 110.766, 68.9197 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node5" type="Area2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node5"]
+position = Vector2( -110.412, -62.9335 )
+scale = Vector2( 1, 0.987545 )
+polygon = PoolVector2Array( 110.291, 67.8889, 127.433, 68.0042, 127.275, 78.8482, 126.447, 78.9024, 126.446, 79.9281, 110.172, 79.9681 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node6" type="Area2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node6"]
+position = Vector2( -112.394, -51.0952 )
+scale = Vector2( 1, 0.987545 )
+polygon = PoolVector2Array( 113.454, 68.0114, 127.433, 68.0042, 127.479, 74.0511, 128.392, 73.9967, 128.285, 83.2466, 127.264, 83.2466, 127.371, 84.1171, 113.454, 84.0627, 113.511, 83.0934, 112.541, 83.0833, 112.487, 73.9967, 113.562, 73.9967 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node7" type="Area2D" parent="."]
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Node7"]
+position = Vector2( -128.365, -51.1743 )
+scale = Vector2( 1, 0.987545 )
+polygon = PoolVector2Array( 112.454, 67.9707, 127.433, 68.0042, 127.424, 72.9704, 126.318, 72.9304, 126.358, 76.0102, 124.304, 76.0502, 124.422, 80.0899, 115.456, 80.2099, 115.456, 76.0902, 113.481, 76.1302, 113.323, 73.0904, 112.414, 73.0104 )
+__meta__ = {
+"_edit_lock_": true
+}
+[connection signal="area_entered" from="Node0" to="Node0" method="_on_Node_area_entered"]
+[connection signal="area_entered" from="Node1" to="Node1" method="_on_Node_area_entered"]
+[connection signal="area_entered" from="Node2" to="Node2" method="_on_Node_area_entered"]
+[connection signal="area_entered" from="Node3" to="Node3" method="_on_Node_area_entered"]
+[connection signal="area_entered" from="Node4" to="Node4" method="_on_Node_area_entered"]
+[connection signal="area_entered" from="Node5" to="Node5" method="_on_Node_area_entered"]
+[connection signal="area_entered" from="Node6" to="Node6" method="_on_Node_area_entered"]
+[connection signal="area_entered" from="Node7" to="Node7" method="_on_Node_area_entered"]
