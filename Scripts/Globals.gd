@@ -2,15 +2,12 @@ extends Node
 
 # Player Variables
 var MAX_HEALTH = 100
-var MAX_SHEIDL = 50
+var MAX_SHEILD = 50
 
 var MAX_SPEED = 1.0
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var SCRAP_DICTIONARY = {}
+# Scrap Utility variables
+var SCRAP_DIR_LIST = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
