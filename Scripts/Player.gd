@@ -88,3 +88,6 @@ func _process(delta):
 	
 func get_camera():
 	return self.get_child(3)
+	
+func get_direction():
+	return mDirectionFacing.normalized();
