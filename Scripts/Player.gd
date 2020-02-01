@@ -9,7 +9,7 @@ var mVelocity = 0
 var mRotVelocity = 0
 
 # Angle The Ship Sprite is facing in Degrees
-var mRotationDir = 90
+var mRotationDir = 270
 
 # Converts Degrees to radians
 func to_rad(degrees):
@@ -17,7 +17,8 @@ func to_rad(degrees):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.rotate(to_rad(180)) # Rotate Sprite to face in specified starting direction
+	pass
+	#self.rotate(to_rad(180)) # Rotate Sprite to face in specified starting direction
 
 func get_input(delta):
 	# Check if Quiting Application
