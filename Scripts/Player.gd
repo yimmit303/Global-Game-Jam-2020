@@ -75,7 +75,7 @@ func _process(delta):
 	if (mRotationDir < 0):
 			mRotationDir += 360
 	if (mVelocity > 0):
-		if(mVelocity < Globals.PARTICLE_ACCELERATION_CUTOFF):
+		if(mVelocity < Globals.VELOCITY_CUTTOFF):
 			mVelocity = 0
 			
 	handle_particles()
@@ -85,3 +85,6 @@ func _process(delta):
 	mDirectionFacing = Vector2(cos(radAngle), sin(radAngle))
 	
 	self.set_position(self.get_position() + mDirSpeed)
+	
+func get_camera():
+	return self.get_child(3)
