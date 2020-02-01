@@ -55,7 +55,11 @@ func get_input(delta):
 				mVelocity -= tmp
 				
 
+#Adjust Particle Emitters number of particles Emitting based on speed
 func handle_particles():
+	var particleHolder = self.get_child(4)
+	for i in particleHolder.get_child_count():
+		particleHolder.get_child(i).emitting = (mVelocity > 0)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -73,10 +77,11 @@ func _process(delta):
 	if (mVelocity > 0):
 		if(mVelocity < Globals.PARTICLE_ACCELERATION_CUTOFF):
 			mVelocity = 0
-		handle_particles()
+			
+	handle_particles()
 			
 	self.rotate(to_rad(mRotVelocity))
 	var radAngle = to_rad(mRotationDir)
 	mDirectionFacing = Vector2(cos(radAngle), sin(radAngle))
 	
-	self.set_position(self.get_position() + mDirSpeed * mVelocity)
+	self.set_position(self.get_position() + mDirSpeed)
