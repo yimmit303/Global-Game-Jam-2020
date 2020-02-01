@@ -16,6 +16,10 @@ func _process(delta):
 	self.global_position += velocity * delta;
 
 
+func _exit_tree():
+	pass;
+
+
 func get_damage():
 	self.queue_free();
 	return 5;
