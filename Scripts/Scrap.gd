@@ -78,9 +78,15 @@ func generate_scrap_sprite(scrap_dir, scrap_layers):
 func get_value():
 	return size * 10
 	
-func modify_moving_dircetion(dirAmount, tractor, tractoring):
-	if(velocity < Globals.MAX_VELOCITY_SPEED and tractoring):
-		#velocity += delta * Globals.MAX_VELOCITY_SPEED
-		pass
+#Check in range to point, within clamp_range
+func is_inrange(pointToCheck):
+	var dist = pointToCheck - self.position
+	if(dist.x < Globals.SCRAP_TRACTOR_DIST_CLAMP_RANGE + self.size.x and dist.y < Globals.SCRAP_TRACTOR_DIST_CLAMP_RANGE + self.size.y):
+		return true
+	return false
 	
-	directionMoving += dirAmount * velocity
+# Modifys the junk floating by the direction being pulled and the increase in velocity towards that direction
+func tractor_junk(directionToGo, pointToGetTo, delta):
+	if(velocity < Globals.MAX_VELOCITY_SPEED):
+		velocity += delta * Globals.MAX_VELOCITY_SPEED
+	directionMoving += directionToGo * velocity
