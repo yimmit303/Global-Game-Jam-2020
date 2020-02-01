@@ -26,9 +26,6 @@ func _ready():
 			scrap_constructor_dict[file[0]] = [file]
 	generate_scrap_sprite(scrap_dir, get_final_scrap_layers(scrap_constructor_dict))
 
-func _input(event):
-	if Input.is_action_just_pressed("gravity_beam"):
-		get_tree().reload_current_scene()
 
 func _process(delta):
 	self.set_rotation_degrees(self.get_rotation_degrees() + rot_speed * delta * rot_dir)
@@ -69,3 +66,6 @@ func generate_scrap_sprite(scrap_dir, scrap_layers):
 		sprite.texture = load("res://Resources/Scrap/" + scrap_dir + "/" + layer)
 		sprite.scale = Vector2(size, size)
 		self.add_child(sprite)
+
+func get_value():
+	return size * 10
