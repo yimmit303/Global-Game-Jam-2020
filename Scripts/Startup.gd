@@ -20,4 +20,4 @@ func generate_scrap_dictionary(path):
 	else:
 		print("An error occurred when trying to access the path.")
 	print(scrap_list)
-	Globals.SCRAP_DICTIONARY = scrap_list
+	Globals.SCRAP_DIR_LIST = scrap_list
