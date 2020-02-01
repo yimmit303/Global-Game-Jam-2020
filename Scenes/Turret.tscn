@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Resources/Images/Enemy.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Enemy_Basic.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Turret.gd" type="Script" id=2]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.00490196, 0.996622 ), 0.0, 0.161568, 0, 0, Vector2( 1, 0 ), -3.33875, 0.0, 0, 0 ]
@@ -60,8 +60,7 @@ load_path = "res://.import/ShipExhaust2.png-09dc2d54f877c8c7fff7f8b7ec1b5389.ste
 [sub_resource type="OccluderPolygon2D" id=7]
 polygon = PoolVector2Array( 17.8621, -6.96879, 6.09312, -3.78981, 5.95784, 1.68886, 17.7945, 5.07075, 17.091, 8.91333, 3.96495, 20.8293, 1.0654, 21.0613, -1.77616, 24.0768, -1.94176, 27.8873, -5.03239, 31.0638, -9.95205, 31.1161, -15.9708, 27.9759, -16.9129, 25.8301, -17.9596, 10.0767, -20.9232, 9.93765, -22.9601, 7.86947, -22.9914, 3.04372, -20.9232, 0.975546, -18.0403, 0.975546, -17.9714, -2.98054, -20.9781, -2.95077, -23.0024, -5.03462, -22.9744, -9.92549, -20.9623, -11.9706, -18.0266, -12.0036, -16.9763, -27.9945, -15.9057, -29.9783, -9.97215, -32.9604, -5.02106, -32.9604, -2.06803, -29.9991, -1.92264, -25.9871, 1.04781, -23.1136, 3.99107, -22.923, 17.9377, -10.0734 )
 
-[node name="Enemy" type="Node2D"]
-scale = Vector2( 2, 2 )
+[node name="Turret" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Enemy" type="Sprite" parent="."]
