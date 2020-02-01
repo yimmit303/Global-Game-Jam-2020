@@ -1,16 +1,25 @@
 extends Node
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	generate_scrap_dictionary("res://Resources/Scrap")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func generate_scrap_dictionary(path):
+	var dir = Directory.new()
+	
+	var scrap_dict = {}
+	var count = 0
+	
+	if dir.open(path) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while (file_name != ""):
+			if dir.current_is_dir():
+				if file_name != "." and file_name != "..":
+					scrap_dict[count] = file_name
+					count += 1
+					print("Found directory: " + file_name)
+			file_name = dir.get_next()
+	else:
+		print("An error occurred when trying to access the path.")
+	print(scrap_dict)
+	Globals.SCRAP_DICTIONARY = scrap_dict
