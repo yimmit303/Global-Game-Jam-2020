@@ -11,16 +11,21 @@ func _ready():
 # Collision handeling for Node, gets damage from other Object if its hostile
 # If other object has get_val / is a scrap item, if held the item will heal or add to shield
 func _on_Node_area_entered(area):
+	
 	if(area.has_method("get_damage")):		# Enemy bullet
 		mNodeHealth -= area.get_damage()
-	elif(area.has_method("get_val")):		# Attach Junk
-		var healAmt = area.get_val()
 		
-		# Handle Incrementing Health and Shield
-		if(mNodeHealth + healAmt > Globals.MAX_HEALTH):
-			if(mSheild < Globals.MAX_SHEILD):
-				var tmp = (mNodeHealth + healAmt) - 100
-				mNodeHealth += healAmt - tmp
-				mSheild += mSheild + tmp - Globals.MAX_HEALTH
-		else:
-			mNodeHealth += healAmt
+	elif(area.has_method("get_val")):		# Repair using Junk
+		var healAmt = area.get_val()
+		if(healAmt > 0):
+			# Handle Incrementing Health and Shield
+			if(mNodeHealth + healAmt > Globals.MAX_HEALTH):
+				if(mSheild < Globals.MAX_SHEILD):
+					var tmp = (mNodeHealth + healAmt) - 100
+					mNodeHealth += healAmt - tmp
+					mSheild += mSheild + tmp - Globals.MAX_HEALTH
+					area.get_node().queue_free()
+			else:
+				mNodeHealth += healAmt
+				area.get_node().queue_free()
+		
