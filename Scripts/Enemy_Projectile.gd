@@ -14,3 +14,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	self.global_position += velocity * delta;
+
+
+func get_damage():
+	self.queue_free();
+	print("yeep")
+	return 5;

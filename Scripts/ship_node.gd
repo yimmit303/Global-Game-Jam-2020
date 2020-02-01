@@ -11,8 +11,8 @@ func _ready():
 # If other object has get_val / is a scrap item, if held the item will heal or add to shield
 func _on_Node_area_entered(area):
 	
-	if(area.has_method("get_damage")):		# Enemy bullet
-		mNodeHealth -= area.get_damage()
+	if(area.get_parent().has_method("get_damage")):		# Enemy bullet
+		mNodeHealth -= area.get_parent().get_damage()
 		
 	elif(area.has_method("get_val")):		# Repair using Junk
 		var healAmt = area.get_val()
