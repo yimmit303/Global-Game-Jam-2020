@@ -36,7 +36,7 @@ func _ready():
 func _process(delta):
 	velocity *= Globals.VELOCITY_DAMPENING
 	self.set_rotation_degrees(self.get_rotation_degrees() + rot_speed * delta * rot_dir)
-	self.set_position(self.get_position() + directionMoving * velocity * delta)
+	self.set_position(self.get_position() + directionMoving * delta)
 
 func get_scrap_images(path):
 	var dir = Directory.new()
@@ -86,7 +86,19 @@ func is_inrange(pointToCheck):
 	return false
 	
 # Modifys the junk floating by the direction being pulled and the increase in velocity towards that direction
-func tractor_junk(directionToGo, pointToGetTo, delta):
+func tractor_junk(pointToGetTo, delta):
 	if(velocity < Globals.MAX_VELOCITY_SPEED):
 		velocity += delta * Globals.MAX_VELOCITY_SPEED
-	directionMoving += directionToGo * velocity
+		
+	var dirToDest = (self.position - pointToGetTo).normalized()	
+	directionMoving += dirToDest * velocity
+
+func set_playerOwned():
+	playerOwned = true
+	directionMoving = Vector2(0, 0)
+	
+func is_playerOwned():
+	return playerOwned
+	
+func fire_trash(direction):
+	directionMoving = direction * Globals.PLAYER_PROJECTILE_SPEED

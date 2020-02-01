@@ -16,10 +16,6 @@ var tractoring = false
 var ObjectsTractoring = []
 var ObjectsHeld = []
 
-# Converts Degrees to radians
-func to_rad(degrees):
-	return degrees * PI/180
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -59,11 +55,14 @@ func get_input(delta):
 			else:
 				mVelocity -= tmp
 				
-	
+	if Input.is_action_pressed("gravity_beam"):
+		tractoring = true
+	else:
+		tractoring = false
 
 #Adjust Particle Emitters number of particles Emitting based on speed
 func handle_particles():
-	var particleHolder = self.get_child(4)
+	var particleHolder = $EngineParticles
 	for i in particleHolder.get_child_count():
 		particleHolder.get_child(i).emitting = (mVelocity > 0)
 	pass
@@ -86,17 +85,29 @@ func _process(delta):
 			
 	handle_particles()
 			
-	self.rotate(to_rad(mRotVelocity))
-	var radAngle = to_rad(mRotationDir)
+	self.rotate(Globals.to_rad(mRotVelocity))
+	var radAngle = Globals.to_rad(mRotationDir)
 	mDirectionFacing = Vector2(cos(radAngle), sin(radAngle))
 	
 	self.set_position(self.get_position() + mDirSpeed)
 	
-func tractorObject(obj):
-	pass
+	# Tractor Objects to Player
+	if(tractoring):
+		for i in ObjectsTractoring:
+			tractorObject(ObjectsTractoring[i], i, delta)
+	
+func tractorObject(obj, index, delta):
+	var pointToReach = $TractorPoint.position
+	if(obj.is_inrange(pointToReach)):
+		ObjectsTractoring.remove(index)
+		ObjectsHeld.append(obj)
+		obj.set_playerOwned()
+		$TractorPoint.add_child(obj)
+	else:
+		obj.tractor_junk(pointToReach, delta)
 	
 func get_camera():
-	return self.get_child(3)
+	return $Camera2D
 	
 func get_direction():
 	return mDirectionFacing.normalized();
@@ -109,4 +120,7 @@ func _on_TractorBeam_area_entered(area):
 				ObjectsTractoring.append(area.get_parent())
 
 func _on_TractorBeam_area_exited(area):
-	pass # Replace with function body.
+	if(area.get_parent().has_method("tractor_junk")):
+		for i in ObjectsTractoring:
+			if(ObjectsTractoring[i] == area.get_parent()):
+				ObjectsTractoring.erase(area.get_parent())
