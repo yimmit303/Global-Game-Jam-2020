@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Enemy_Basic.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Resources/Images/light_shadow_light.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Images/Light_texture.png" type="Texture" id=3]
 
 [node name="Root" type="Node2D"]
 
@@ -11,8 +11,12 @@ position = Vector2( 205.601, 85.8556 )
 
 [node name="Light2D" type="Light2D" parent="World"]
 position = Vector2( -3.16309, -5.87433 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
+energy = 1.5
 shadow_enabled = true
+shadow_filter = 4
+shadow_filter_smooth = 3.1
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="World"]
 layer = 0
