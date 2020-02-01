@@ -11,6 +11,11 @@ var mRotVelocity = 0
 # Angle The Ship Sprite is facing in Degrees
 var mRotationDir = 270
 
+# Tractor beam variable and objects held
+var tractoring = false
+var ObjectsTractoring = []
+var ObjectsHeld = []
+
 # Converts Degrees to radians
 func to_rad(degrees):
 	return degrees * PI/180
@@ -54,6 +59,7 @@ func get_input(delta):
 			else:
 				mVelocity -= tmp
 				
+	
 
 #Adjust Particle Emitters number of particles Emitting based on speed
 func handle_particles():
@@ -86,8 +92,21 @@ func _process(delta):
 	
 	self.set_position(self.get_position() + mDirSpeed)
 	
+func tractorObject(obj):
+	pass
+	
 func get_camera():
 	return self.get_child(3)
 	
 func get_direction():
 	return mDirectionFacing.normalized();
+
+# Check if tractoring is active, and start pulling in junk to Point
+func _on_TractorBeam_area_entered(area):
+	if(tractoring):
+		for i in ObjectsTractoring:
+			if(area.get_parent().has_method("tractor_junk")):
+				ObjectsTractoring.append(area.get_parent())
+
+func _on_TractorBeam_area_exited(area):
+	pass # Replace with function body.
