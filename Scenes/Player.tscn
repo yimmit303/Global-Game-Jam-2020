@@ -106,11 +106,11 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
 [connection signal="area_entered" from="ShipParts/Node0" to="ShipParts/Node0" method="_on_Node_area_entered"]
 [connection signal="area_entered" from="ShipParts/Node1" to="ShipParts/Node1" method="_on_Node_area_entered"]
 [connection signal="area_entered" from="ShipParts/Node2" to="ShipParts/Node2" method="_on_Node_area_entered"]
