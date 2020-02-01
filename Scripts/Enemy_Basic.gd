@@ -10,9 +10,10 @@ var states = ["acquiring", "persuing", "attacking"]; #Not actually used, just he
 #Fixed Values for movement
 var outer_diameter = 500;
 var inner_diameter = 300;
-var attack_speed: float = 400;
+var attack_speed: float = 1600;
 var rotate_speed: float = 2
-var acceleration: float = 200;
+var acceleration: float = 1200;
+var decelleration_modifier = 2;
 
 #Values for constant manipulation
 var cooldown: float = 0;
@@ -22,6 +23,11 @@ var velocity = 0;
 func _ready():
 	target = get_node(goal)
 	pass # Replace with function body.
+
+
+
+func fire_projectile():
+	pass
 
 
 
@@ -40,7 +46,7 @@ func acquire(var delta):
 
 
 func pursue(var delta):
-	var distance_to_target = (target.global_position - self.global_position).length() - 300;
+	var distance_to_target = (target.global_position - self.global_position).length() - self.inner_diameter;
 	
 	if distance_to_target < 0:
 		self.state = "attacking";
@@ -53,12 +59,12 @@ func pursue(var delta):
 	elif angle > 0 and angle > delta * rotate_speed:
 		self.rotate(delta * rotate_speed);
 	
-	var low_velocity = sqrt(self.acceleration * distance_to_target / 2);
+	var low_velocity = sqrt(self.acceleration * distance_to_target / 2) * self.decelleration_modifier;
 	
 	if self.velocity < attack_speed and self.velocity < low_velocity:
 		self.velocity += delta * acceleration;
 	elif self.velocity > low_velocity and self.velocity > 0:
-		self.velocity -= delta * acceleration;
+		self.velocity -= delta * acceleration * self.decelleration_modifier;
 		
 	self.position += self.global_transform.x * self.velocity * delta;
 
@@ -68,7 +74,7 @@ func attack(var delta):
 	#Get direction of player
 	
 	var distance_to_target = (target.global_position - self.global_position).length();
-	if distance_to_target > 500:
+	if distance_to_target > self.outer_diameter:
 		self.state = "acquiring";
 		return;
 	
