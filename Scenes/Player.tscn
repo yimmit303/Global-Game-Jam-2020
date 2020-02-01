@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/ship_node.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Sprites/Ship.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=3]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( -18.237, -28.0141, -5.18174, -27.8752, -3.93177, -25.9308, -0.112411, -25.9308, 2.04031, -29.2641, 13.0123, -28.9863, 16.8316, -26.0002, 16.0561, 0.819416, 22.006, 1.92125, 22.006, 20.1014, 15.9776, 22.0062, 15.9403, 31.0636, 0.97014, 32.0116, -3.9534, 27.9981, -12.8279, 27.9496, -21.9587, 19.9231 )
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 3 )
@@ -102,6 +105,12 @@ polygon = PoolVector2Array( 112.454, 67.9707, 127.433, 68.0042, 127.424, 72.9704
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 1 )
 [connection signal="area_entered" from="ShipParts/Node0" to="ShipParts/Node0" method="_on_Node_area_entered"]
 [connection signal="area_entered" from="ShipParts/Node1" to="ShipParts/Node1" method="_on_Node_area_entered"]
 [connection signal="area_entered" from="ShipParts/Node2" to="ShipParts/Node2" method="_on_Node_area_entered"]
