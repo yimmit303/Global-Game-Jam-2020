@@ -45,6 +45,7 @@ __meta__ = {
 }
 
 [node name="ShipParts" type="Node2D" parent="."]
+visible = false
 
 [node name="Node0" type="Area2D" parent="ShipParts"]
 script = ExtResource( 1 )
@@ -135,6 +136,7 @@ __meta__ = {
 }
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2( -0.0460682, 0 )
 occluder = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -156,6 +158,18 @@ amount = 128
 local_coords = false
 process_material = SubResource( 4 )
 texture = ExtResource( 4 )
+
+[node name="TractorBeam" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TractorBeam"]
+position = Vector2( -0.216578, 2.20744 )
+scale = Vector2( 1, 1.07088 )
+polygon = PoolVector2Array( 13.2644, -29.2896, 3.03353, -29.0507, -6.76868, -59.3558, 0.915247, -62.8, 13.8242, -62.8, 21.8155, -59.3558 )
+
+[node name="TractorPoint" type="Node2D" parent="."]
+visible = false
+position = Vector2( 7.9131, -30.3642 )
 [connection signal="area_entered" from="ShipParts/Node0" to="ShipParts/Node0" method="_on_Node_area_entered"]
 [connection signal="area_entered" from="ShipParts/Node1" to="ShipParts/Node1" method="_on_Node_area_entered"]
 [connection signal="area_entered" from="ShipParts/Node2" to="ShipParts/Node2" method="_on_Node_area_entered"]
@@ -164,3 +178,5 @@ texture = ExtResource( 4 )
 [connection signal="area_entered" from="ShipParts/Node5" to="ShipParts/Node5" method="_on_Node_area_entered"]
 [connection signal="area_entered" from="ShipParts/Node6" to="ShipParts/Node6" method="_on_Node_area_entered"]
 [connection signal="area_entered" from="ShipParts/Node7" to="ShipParts/Node7" method="_on_Node_area_entered"]
+[connection signal="area_entered" from="TractorBeam" to="." method="_on_TractorBeam_area_entered"]
+[connection signal="area_exited" from="TractorBeam" to="." method="_on_TractorBeam_area_exited"]

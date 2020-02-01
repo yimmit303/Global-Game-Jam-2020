@@ -5,6 +5,7 @@ var MAX_HEALTH = 100
 var MAX_SHEILD = 50
 var MAX_VELOCITY_SPEED = 3.0
 var MAX_ROTATION_SPEED = 10.0
+var PLAYER_PROJECTILE_SPEED = 4.0
 
 # Dampening Variables
 var VELOCITY_DAMPENING = .95
@@ -19,6 +20,10 @@ var MAX_PARTICLES = 128
 
 # Scrap Utility variables
 var SCRAP_DIR_LIST = []
+
+# Converts Degrees to radians
+func to_rad(degrees):
+	return degrees * PI/180
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
