@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Scrap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/ScrapCluster.gd" type="Script" id=2]
 
 [node name="ScrapCluster" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="Scrap" parent="." instance=ExtResource( 1 )]
 position = Vector2( 39.9663, -51.632 )

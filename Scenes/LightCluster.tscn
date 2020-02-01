@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Resources/Images/Light_texture.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Sprites/Rock.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Sprites/Rock_NoLight.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/LightCluster.gd" type="Script" id=4]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( 6.01662, -15.0394, 15.979, -5.40106, 16.9509, 6.34315, 6.4216, 15.4955, -7.68066, 15.2093, -16.5383, 5.30582, -16.2569, -5.15808, -3.45159, -15.7207 )
 
 [node name="LightCluster" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( -3.16309, -5.87433 )
@@ -13,5 +20,47 @@ shadow_enabled = true
 shadow_filter = 4
 shadow_filter_smooth = 3.1
 __meta__ = {
+"_edit_lock_": true,
 "_editor_description_": ""
 }
+
+[node name="Sprite" type="Sprite" parent="."]
+light_mask = 0
+position = Vector2( -3.16309, -5.87433 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="MiscAsteroid" type="Sprite" parent="."]
+position = Vector2( -150.249, -79.9034 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="MiscAsteroid"]
+occluder = SubResource( 1 )
+
+[node name="MiscAsteroid2" type="Sprite" parent="."]
+position = Vector2( 199.167, -156.904 )
+rotation = 2.04404
+scale = Vector2( 1.30534, 1.30534 )
+texture = ExtResource( 3 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="MiscAsteroid2"]
+occluder = SubResource( 1 )
+
+[node name="MiscAsteroid3" type="Sprite" parent="."]
+position = Vector2( -229.191, 219.688 )
+rotation = 4.87696
+scale = Vector2( 3.63668, 3.63668 )
+texture = ExtResource( 3 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="MiscAsteroid3"]
+occluder = SubResource( 1 )
+
+[node name="MiscAsteroid4" type="Sprite" parent="."]
+position = Vector2( 190.755, 130.393 )
+rotation = 7.57046
+scale = Vector2( 2.02132, 1.55444 )
+texture = ExtResource( 3 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="MiscAsteroid4"]
+occluder = SubResource( 1 )
