@@ -13,7 +13,7 @@ var outer_diameter = 500;
 var inner_diameter = 300;
 var attack_speed: float = 2000;
 var rotate_speed: float = 1
-var acceleration: float = 500;
+var acceleration: float = 250;
 var decelleration_modifier = 2;
 
 #Values for constant manipulation
@@ -49,6 +49,7 @@ func acquire(var delta):
 		self.rotate(delta * rotate_speed);
 		
 	angle = self.get_angle_to(target.global_position);
+	self.position += self.global_transform.x * self.velocity * delta;
 	if abs(angle) < .05:
 		self.state = "pursuing";
 
@@ -82,7 +83,7 @@ func pursue(var delta):
 		
 	self.position += self.global_transform.x * self.velocity * delta;
 	
-	if abs(angle) < .2:
+	if abs(angle) < .2 and distance_to_target < 600:
 		if cdown_short == 0:
 			if fire_projectile(.15):
 				cdown_short = 1;
@@ -111,7 +112,16 @@ func attack(var delta):
 		
 	angle = self.get_angle_to(target.global_position);
 	
-	fire_projectile()
+	if abs(angle) < .2:
+		if cdown_short == 0:
+			if fire_projectile(.15):
+				cdown_short = 1;
+		elif cdown_short == 1:
+			if fire_projectile(.15):
+				cdown_short = 2;
+		elif cdown_short == 2:
+			if fire_projectile(.75):
+				cdown_short = 0;
 	
 	
 
