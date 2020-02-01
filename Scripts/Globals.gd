@@ -4,7 +4,8 @@ extends Node
 var MAX_HEALTH = 100
 var MAX_SHEILD = 50
 
-var MAX_SPEED = 1.0
+var MAX_VELOCITY_SPEED = 5.0
+var MAX_ROTATION_SPEED = 2.0
 
 # Scrap Utility variables
 var SCRAP_DIR_LIST = []
