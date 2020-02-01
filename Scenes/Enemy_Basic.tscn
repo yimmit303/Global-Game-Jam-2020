@@ -4,16 +4,15 @@
 [ext_resource path="res://Scripts/Enemy_Basic.gd" type="Script" id=2]
 
 [node name="Node2D" type="Node2D"]
-scale = Vector2( 0.5, 2 )
+scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 
 [node name="Enemy" type="Sprite" parent="."]
 position = Vector2( 0.03508, -0.990635 )
 rotation = 1.5708
-scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PoolVector2Array( -31.7888, -32.9319, 31.9872, -0.877853, -31.2905, 31.1762 )
+polygon = PoolVector2Array( -16.8986, -27.8715, -9.95703, -32.9399, -5.10898, -32.9399, 18.0294, -10.0219, 18.1396, 8.15832, -5.03825, 31.0749, -9.9506, 31.0749, -17.0087, 25.9479, -22.8484, 7.87789, -22.8484, -9.86157 )

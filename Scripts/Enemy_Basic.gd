@@ -6,13 +6,14 @@ var target: Node2D
 var target_position;
 var state = "acquiring";
 var states = ["acquiring", "persuing", "attacking"]; #Not actually used, just here for convenience
+var projectile_prefab = load("res://Scenes//Enemy_Projectile.tscn");
 
 #Fixed Values for movement
 var outer_diameter = 500;
 var inner_diameter = 300;
-var attack_speed: float = 1600;
-var rotate_speed: float = 2
-var acceleration: float = 1200;
+var attack_speed: float = 4000;
+var rotate_speed: float = 1
+var acceleration: float = 1000;
 var decelleration_modifier = 2;
 
 #Values for constant manipulation
@@ -27,7 +28,11 @@ func _ready():
 
 
 func fire_projectile():
-	pass
+	var proj = projectile_prefab.instance();
+	proj.position = self.position;
+	proj.velocity = (self.global_transform.x * (self.velocity + 100));
+	self.get_parent().add_child(proj);
+	pass;
 
 
 
@@ -52,8 +57,13 @@ func pursue(var delta):
 		self.state = "attacking";
 		return;
 		
-	#Get direction of player
+	#Get direction of player for course corrections
 	var angle = self.get_angle_to(target.global_position);
+	
+	if abs(angle) > .25:
+		self.state = "acquiring";
+		return;
+	
 	if angle < 0 and angle < delta * rotate_speed:
 		self.rotate(-delta * rotate_speed);
 	elif angle > 0 and angle > delta * rotate_speed:
@@ -85,7 +95,10 @@ func attack(var delta):
 		self.rotate(delta * rotate_speed);
 		
 	angle = self.get_angle_to(target.global_position);
-	return true;
+	
+	if self.cooldown <= 0:
+		fire_projectile();
+		self.cooldown = 1
 	
 	
 
