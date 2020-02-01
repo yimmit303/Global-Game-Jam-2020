@@ -8,10 +8,11 @@ script = ExtResource( 2 )
 
 [node name="Enemy" type="Sprite" parent="."]
 position = Vector2( 0.03508, -0.990635 )
+rotation = 1.5708
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PoolVector2Array( -31.9649, 30.9441, -0.0433788, -33.1313, 32.0497, 30.9387 )
+polygon = PoolVector2Array( -31.7888, -32.9319, 31.9872, -0.877853, -31.2905, 31.1762 )
