@@ -27,20 +27,11 @@ func get_input(delta):
 	# Handle Rotation / Direction facing
 	if Input.is_action_pressed("move_right"):
 		mRotVelocity += Globals.MAX_ROTATION_SPEED * delta
-		mRotationDir += 1
-		if (mRotationDir > 360):
-			mRotationDir -= 360
-		var radAngle = to_rad(mRotationDir)
-		mDirectionFacing = Vector2(cos(radAngle), sin(radAngle))
-		self.rotate(to_rad(1))
+		#mRotationDir += 1
 		
 	if Input.is_action_pressed("move_left"):
-		mRotationDir -= 1;
-		if (mRotationDir < 0):
-			mRotationDir += 360
-		var radAngle = to_rad(mRotationDir)
-		mDirectionFacing = Vector2(cos(radAngle), sin(radAngle))
-		self.rotate(to_rad(-1))
+		#mRotationDir -= 1;
+		mRotVelocity -= Globals.MAX_ROTATION_SPEED * delta
 
 	# Handle Acceleration
 	if Input.is_action_pressed("move_forward"):
@@ -65,5 +56,16 @@ func _process(delta):
 	get_input(delta)
 	
 	mDirSpeed *= .99	# Dampen Velocity
+	mRotVelocity *= .95
+	mRotationDir += mRotVelocity
+	
+	if (mRotationDir > 360):
+			mRotationDir -= 360
+	if (mRotationDir < 0):
+			mRotationDir += 360
+			
+	self.rotate(to_rad(mRotVelocity))
+	var radAngle = to_rad(mRotationDir)
+	mDirectionFacing = Vector2(cos(radAngle), sin(radAngle))
 	
 	self.set_position(self.get_position() + mDirSpeed)
