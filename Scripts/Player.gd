@@ -43,6 +43,8 @@ func get_input(delta):
 			else:
 				mVelocity += tmp
 		mDirSpeed += mDirectionFacing * mVelocity * delta
+	else:
+		mVelocity *= Globals.VELOCITY_DAMPENING
 		
 	if Input.is_action_pressed("move_backwards"):
 		if (mVelocity > 0):
@@ -51,22 +53,30 @@ func get_input(delta):
 				mVelocity -= 0 - (mVelocity - tmp)	# Get Difference to 0
 			else:
 				mVelocity -= tmp
+				
+
+func handle_particles():
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	get_input(delta)
 	
-	mDirSpeed *= .99	# Dampen Velocity
-	mRotVelocity *= .95
+	mDirSpeed *= Globals.SPEED_DAMPENING		# Dampen Direction Moving Velocity
+	mRotVelocity *= Globals.ROTATION_DAMPENING	
 	mRotationDir += mRotVelocity
 	
 	if (mRotationDir > 360):
 			mRotationDir -= 360
 	if (mRotationDir < 0):
 			mRotationDir += 360
+	if (mVelocity > 0):
+		if(mVelocity < Globals.PARTICLE_ACCELERATION_CUTOFF):
+			mVelocity = 0
+		handle_particles()
 			
 	self.rotate(to_rad(mRotVelocity))
 	var radAngle = to_rad(mRotationDir)
 	mDirectionFacing = Vector2(cos(radAngle), sin(radAngle))
 	
-	self.set_position(self.get_position() + mDirSpeed)
+	self.set_position(self.get_position() + mDirSpeed * mVelocity)
