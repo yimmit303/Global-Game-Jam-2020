@@ -41,14 +41,34 @@ func acquire(var delta):
 
 func pursue(var delta):
 	var distance_to_target = (target.global_position - self.global_position).length() - 300;
-	if self.velocity < attack_speed:
+	
+	if distance_to_target < 0:
+		self.state = "attacking";
+		return;
+	
+	var low_velocity = sqrt(self.acceleration * distance_to_target / 2);
+	
+	if self.velocity < attack_speed and self.velocity < low_velocity:
 		self.velocity += delta * acceleration;
+	elif self.velocity > low_velocity and self.velocity > 0:
+		self.velocity -= delta * acceleration;
+		
 	self.position += self.global_transform.x * self.velocity * delta;
-	return true;
 
 
 
 func attack(var delta):
+	#Get direction of player
+	
+	var distance_to_target = (target.global_position - self.global_position).length() - 300;
+	
+	var angle = self.get_angle_to(target.global_position);
+	if angle < 0:
+		self.rotate(-delta * rotate_speed);
+	elif angle > 0:
+		self.rotate(delta * rotate_speed);
+		
+	angle = self.get_angle_to(target.global_position);
 	return true;
 	
 	
