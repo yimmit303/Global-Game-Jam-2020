@@ -26,6 +26,7 @@ func get_input(delta):
 	
 	# Handle Rotation / Direction facing
 	if Input.is_action_pressed("move_right"):
+		mRotVelocity += Globals.MAX_ROTATION_SPEED * delta
 		mRotationDir += 1
 		if (mRotationDir > 360):
 			mRotationDir -= 360
