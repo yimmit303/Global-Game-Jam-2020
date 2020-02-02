@@ -139,7 +139,7 @@ func _exit_tree():
 	var cluster = scrap_prefab.instance();
 	cluster.global_position = self.global_position;
 	cluster.player_ref = self.target;
-	self.get_parent().get_parent().add_child(cluster);
+	self.get_parent().add_child(cluster);
 	pass;
 
 
