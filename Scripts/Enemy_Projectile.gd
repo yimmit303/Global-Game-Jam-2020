@@ -8,6 +8,7 @@ export(Vector2) var velocity;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.rotate(self.velocity.angle())
 	pass # Replace with function body.
 
 

@@ -77,7 +77,6 @@ polygon = PoolVector2Array( -16.8986, -27.8715, -9.95703, -32.9399, -5.10898, -3
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Particles2D" type="Particles2D" parent="Node2D"]
-visible = false
 position = Vector2( -22, 7.5 )
 rotation = 1.5708
 amount = 128
@@ -89,7 +88,6 @@ __meta__ = {
 }
 
 [node name="Particles2D2" type="Particles2D" parent="Node2D"]
-visible = false
 position = Vector2( -22, -7.5 )
 rotation = 1.5708
 amount = 128

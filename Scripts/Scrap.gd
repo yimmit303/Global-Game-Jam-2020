@@ -36,7 +36,7 @@ func _ready():
 func _process(delta):
 	velocity *= Globals.VELOCITY_DAMPENING
 	self.set_rotation_degrees(self.get_rotation_degrees() + rot_speed * delta * rot_dir)
-	self.set_position(self.get_position() + directionMoving * delta)
+	self.set_position(self.get_position() + directionMoving)
 
 func get_scrap_images(path):
 	var dir = Directory.new()
@@ -80,8 +80,8 @@ func get_value():
 	
 #Check in range to point, within clamp_range
 func is_inrange(pointToCheck):
-	var dist = pointToCheck - self.position
-	if(dist.x < Globals.SCRAP_TRACTOR_DIST_CLAMP_RANGE + self.size.x and dist.y < Globals.SCRAP_TRACTOR_DIST_CLAMP_RANGE + self.size.y):
+	var dist = pointToCheck.distance_to(pointToCheck)
+	if(dist < Globals.SCRAP_TRACTOR_DIST_CLAMP_RANGE):
 		return true
 	return false
 	
@@ -102,3 +102,4 @@ func is_playerOwned():
 	
 func fire_trash(direction):
 	directionMoving = direction * Globals.PLAYER_PROJECTILE_SPEED
+	print("firing trash in direction: ",directionMoving)
