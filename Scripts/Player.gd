@@ -108,7 +108,7 @@ func _process(delta):
 	
 func tractorObject(obj, index, delta):
 	var pointToReach = $ShipComponents/TractorPoint.get_global_position()
-	if(obj.is_inrange(pointToReach) and ObjectsHeld.size() == 0):
+	if(ObjectsHeld.size() == 0): #and obj.is_inrange(pointToReach)):
 		ObjectsTractoring.remove(index)
 		ObjectsHeld.append(obj)
 		obj.set_playerOwned()

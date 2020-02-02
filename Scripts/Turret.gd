@@ -1,10 +1,16 @@
 extends Node2D
 
+#Values forgame stuff
+var explosion;
+var dying = false;
+var death_timer = .9;
+
 #Values intended for logic
 export(NodePath) var goal;
 var target: Node2D
 var target_position;
 var projectile_prefab = load("res://Scenes//Enemy_Projectile.tscn");
+var scrap_prefab = load("res://scenes//ScrapCluster.tscn");
 
 #Fixed Values for movement
 var outer_diameter = 1000;
@@ -18,6 +24,7 @@ var cdown_short: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	target = get_node(goal)
+	explosion = get_node("ExplosionParticle");
 	pass # Replace with function body.
 
 
@@ -55,12 +62,35 @@ func attack(var delta):
 	
 
 func _exit_tree():
+	var cluster = scrap_prefab.instance();
+	cluster.global_position = self.global_position;
+	cluster.player_ref = self.target;
+	self.get_parent().get_parent().add_child(cluster);
 	pass;
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
-	cooldown -= 1 * delta;
-	attack(delta);
+	if not dying:
+		cooldown -= 1 * delta;
+		attack(delta);
+	else:
+		self.death_timer -= delta;
+		if self.death_timer <= 0:
+			self.get_parent().queue_free();
+		pass;
+
+
+func _on_Area2D_area_entered(area):
+	if area.get_parent().has_method("get_value"):
+		dying = true;
+		self.explosion.emitting = true;
+	pass # Replace with function body.
+
+
+func _on_Area2D2_area_entered(area):
+	if area.get_parent().has_method("get_value"):
+		dying = true;
+		self.explosion.emitting = true;
+	pass # Replace with function body.

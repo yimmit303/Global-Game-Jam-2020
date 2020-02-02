@@ -106,7 +106,7 @@ func get_value():
 	
 #Check in range to point, within clamp_range
 func is_inrange(pointToCheck):
-	var dist = self.position.distance_to(pointToCheck)
+	var dist = get_global_position().distance_to(pointToCheck)
 	if(dist < Globals.SCRAP_TRACTOR_DIST_CLAMP_RANGE):
 		return true
 	return false
@@ -117,6 +117,9 @@ func tractor_junk(pointToGetTo, delta):
 		velocity += delta * Globals.MAX_TRACTOR_VELOCITY
 		
 	var dirToDest = get_global_position().direction_to(pointToGetTo)
+	#print("Pos to get to: ", pointToGetTo)
+	#print("this globalPos: ",get_global_position())
+	#print("dir To: ",dirToDest)
 	directionMoving += dirToDest * velocity
 
 func set_playerOwned():
