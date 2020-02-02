@@ -52,3 +52,6 @@ func add_score(in_score):
 
 func get_audio_manager():
 	return get_node("../AudioManager")
+
+func player_died():
+	pass
