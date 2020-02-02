@@ -102,3 +102,7 @@ func is_playerOwned():
 	
 func fire_trash(direction):
 	directionMoving = direction * Globals.PLAYER_PROJECTILE_SPEED
+
+
+func _on_Area2D_mouse_entered():
+	print("ding")

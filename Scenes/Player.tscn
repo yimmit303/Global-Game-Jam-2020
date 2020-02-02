@@ -1,20 +1,46 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/ship_node.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Sprites/Ship.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Sprites/ShipExhaust2.png" type="Texture" id=4]
 
-[sub_resource type="OccluderPolygon2D" id=1]
+[sub_resource type="Curve" id=1]
+min_value = -1.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.340686, -1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.973039, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 2
+emission_box_extents = Vector3( 850, 500, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 52.6
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+scale_random = 1.0
+scale_curve = SubResource( 4 )
+hue_variation_curve = SubResource( 2 )
+
+[sub_resource type="OccluderPolygon2D" id=9]
 polygon = PoolVector2Array( -18.237, -28.0141, -5.18174, -27.8752, -3.93177, -25.9308, -0.112411, -25.9308, 2.04031, -29.2641, 13.0123, -28.9863, 16.8316, -26.0002, 16.0561, 0.819416, 22.006, 1.92125, 22.006, 20.1014, 15.9776, 22.0062, 15.9403, 31.0636, 0.97014, 32.0116, -3.9534, 27.9981, -12.8279, 27.9496, -21.9587, 19.9231 )
 
-[sub_resource type="Curve" id=2]
+[sub_resource type="Curve" id=10]
 _data = [ Vector2( 0.00490196, 0.996622 ), 0.0, 0.161568, 0, 0, Vector2( 1, 0 ), -3.33875, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=3]
-curve = SubResource( 2 )
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
 
-[sub_resource type="ParticlesMaterial" id=4]
+[sub_resource type="ParticlesMaterial" id=12]
 lifetime_randomness = 0.1
 emission_shape = 2
 emission_box_extents = Vector3( 5, 1, 1 )
@@ -30,13 +56,58 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 linear_accel = -20.0
 radial_accel = 30.0
-scale_curve = SubResource( 3 )
+scale_curve = SubResource( 11 )
 color = Color( 0.905882, 0, 1, 1 )
 hue_variation = 0.24
 hue_variation_random = 0.41
 
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0.994369 ), 0.0, 0.0, 0, 0, Vector2( 0.95098, 0 ), -1.68162, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 2
+emission_box_extents = Vector3( 20, 5, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 18.27
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 100.0
+radial_accel = -17.81
+scale = 2.0
+scale_curve = SubResource( 7 )
+color = Color( 0.00784314, 0.815686, 0.976471, 1 )
+hue_variation = 0.06
+hue_variation_random = 0.56
+
 [node name="Player" type="Node2D"]
 script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -960.0
+margin_top = -540.0
+margin_right = 960.0
+margin_bottom = 540.0
+mouse_filter = 2
+color = Color( 0, 0, 0.133333, 1 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Starfield" type="Particles2D" parent="."]
+amount = 128
+local_coords = false
+process_material = SubResource( 5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="ShipImage" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -137,7 +208,7 @@ __meta__ = {
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2( -0.0460682, 0 )
-occluder = SubResource( 1 )
+occluder = SubResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -149,14 +220,14 @@ zoom = Vector2( 0.75, 0.75 )
 position = Vector2( -8.13149, 29.339 )
 amount = 128
 local_coords = false
-process_material = SubResource( 4 )
+process_material = SubResource( 12 )
 texture = ExtResource( 4 )
 
 [node name="Particles2D2" type="Particles2D" parent="EngineParticles"]
 position = Vector2( 7.96603, 30.3227 )
 amount = 128
 local_coords = false
-process_material = SubResource( 4 )
+process_material = SubResource( 12 )
 texture = ExtResource( 4 )
 
 [node name="TractorBeam" type="Area2D" parent="."]
@@ -168,6 +239,15 @@ polygon = PoolVector2Array( 13.2644, -29.2896, 3.03353, -29.0507, -15.9432, -83.
 
 [node name="TractorPoint" type="Node2D" parent="."]
 position = Vector2( 7.79102, -24.9924 )
+
+[node name="TractorParticles" type="Particles2D" parent="."]
+position = Vector2( 5.48242, -86.5466 )
+amount = 32
+process_material = SubResource( 8 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
 [connection signal="area_entered" from="ShipParts/Node0" to="ShipParts/Node0" method="_on_Node_area_entered"]
 [connection signal="area_entered" from="ShipParts/Node1" to="ShipParts/Node1" method="_on_Node_area_entered"]
 [connection signal="area_entered" from="ShipParts/Node2" to="ShipParts/Node2" method="_on_Node_area_entered"]

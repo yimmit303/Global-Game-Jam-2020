@@ -6,7 +6,7 @@ var time
 var score
 var spawnables
 
-onready var player = $Foreground/Player
+onready var player = $Player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,7 +42,7 @@ func spawn(object, location):
 	if new_object.has_method("set_player_ref"):
 		new_object.set_rotation_degrees(randi() % 360)
 		new_object.set_player_ref(player)
-	$Foreground.add_child(new_object)
+	self.add_child(new_object)
 
 func add_score(in_score):
 	score += in_score
