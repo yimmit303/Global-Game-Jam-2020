@@ -20,6 +20,8 @@ func _ready():
 func _process(delta):
 	var player_direction = player.get_direction()
 	
+	if(!get_node("../AudioManager/Music").playing):
+		get_node("../AudioManager/Music").playing = true
 	
 	var dir_list = [-1, 1]
 	dir_list.shuffle()

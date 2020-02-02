@@ -10,7 +10,7 @@ var playerFired = false
 
 # Mouse Variables
 var overlapped = false
-var dragging = true
+var dragging = false
 
 var MAX_LIFE_TIME = 5.0
 var fireLifeSpan = MAX_LIFE_TIME
@@ -44,12 +44,13 @@ func _ready():
 
 	
 func handle_input():
-	if (Input.is_mouse_button_pressed(BUTTON_LEFT) and  !playerOwned):
+	if (Input.is_mouse_button_pressed(BUTTON_LEFT) and !playerOwned):
 		if(overlapped):
 			var parObj = self.get_parent()
 			if(parObj.get_name() != "World"):
 				self.get_parent().remove_child(self)
 				parObj.get_parent().add_child(self)
+			overlapped = false
 			dragging = true
 			playerFired = false
 			playerOwned = false
@@ -153,7 +154,8 @@ func fire_trash(direction):
 	directionMoving = direction * Globals.PLAYER_PROJECTILE_SPEED
 
 func _on_Area2D_mouse_entered():
-	overlapped = true
+	if(!dragging and !playerOwned):
+		overlapped = true
 
 func _on_Area2D_mouse_exited():
 	overlapped = false
