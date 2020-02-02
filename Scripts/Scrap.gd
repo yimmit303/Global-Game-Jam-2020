@@ -6,6 +6,7 @@ var size
 var velocity
 var directionMoving
 var playerOwned = false
+var playerFired = true
 
 # Mouse Variables
 var overlapped = false
@@ -47,6 +48,8 @@ func handle_input():
 				self.get_parent().remove_child(self)
 				parObj.get_parent().add_child(self)
 			dragging = true
+			playerFired = false
+			playerOwned = false
 	else:
 		dragging = false
 
@@ -54,9 +57,10 @@ func _process(delta):
 	handle_input()
 	if !dragging:
 		#print("not_dragging")
-		velocity *= Globals.VELOCITY_DAMPENING
-		self.set_rotation_degrees(self.get_rotation_degrees() + rot_speed * delta * rot_dir)
-		self.set_position(self.get_position() + directionMoving)
+		if !playerOwned:
+			velocity *= Globals.VELOCITY_DAMPENING
+			self.set_rotation_degrees(self.get_rotation_degrees() + rot_speed * delta * rot_dir)
+			self.set_position(self.get_position() + directionMoving)
 	else:
 		self.set_position(get_global_mouse_position())
 
@@ -102,21 +106,22 @@ func get_value():
 	
 #Check in range to point, within clamp_range
 func is_inrange(pointToCheck):
-	var dist = pointToCheck.distance_to(pointToCheck)
+	var dist = self.position.distance_to(pointToCheck)
 	if(dist < Globals.SCRAP_TRACTOR_DIST_CLAMP_RANGE):
 		return true
 	return false
 	
 # Modifys the junk floating by the direction being pulled and the increase in velocity towards that direction
 func tractor_junk(pointToGetTo, delta):
-	if(velocity < Globals.MAX_VELOCITY_SPEED):
+	if(velocity < Globals.MAX_TRACTOR_VELOCITY):
 		velocity += delta * Globals.MAX_TRACTOR_VELOCITY
 		
-	var dirToDest = self.position.direction_to(pointToGetTo)	
+	var dirToDest = get_global_position().direction_to(pointToGetTo)
 	directionMoving += dirToDest * velocity
 
 func set_playerOwned():
 	playerOwned = true
+	playerFired = false
 	directionMoving = Vector2(0, 0)
 	
 func is_dragged():
@@ -125,7 +130,12 @@ func is_dragged():
 func is_playerOwned():
 	return playerOwned
 	
+func is_playerFired():
+	return playerFired
+	
 func fire_trash(direction):
+	playerOwned = false
+	playerFired = true
 	directionMoving = direction * Globals.PLAYER_PROJECTILE_SPEED
 
 func _on_Area2D_mouse_entered():

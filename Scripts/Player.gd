@@ -107,7 +107,7 @@ func _process(delta):
 			tractorObject(ObjectsTractoring[i], i, delta)
 	
 func tractorObject(obj, index, delta):
-	var pointToReach = $ShipComponents/TractorPoint.position
+	var pointToReach = $ShipComponents/TractorPoint.get_global_position()
 	if(obj.is_inrange(pointToReach) and ObjectsHeld.size() == 0):
 		ObjectsTractoring.remove(index)
 		ObjectsHeld.append(obj)
