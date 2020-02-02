@@ -39,6 +39,7 @@ func fire_projectile(var cdown = .5) -> bool:
 	proj.velocity = (self.global_transform.x * (750));
 	self.get_parent().add_child(proj);
 	self.cooldown = cdown;
+	self.AudioManager.play_sound("EnemyShoot");
 	return true;
 	
 	
