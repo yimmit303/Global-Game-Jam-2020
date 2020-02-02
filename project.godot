@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="Junk Drive"
 run/main_scene="res://Scenes/Root.tscn"
+boot_splash/image="res://Resources/Sprites/Splash.png"
 config/icon="res://icon.png"
 
 [autoload]
