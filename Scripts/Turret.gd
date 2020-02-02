@@ -10,8 +10,8 @@ var AudioManager;
 export(NodePath) var goal;
 var target: Node2D
 var target_position;
-var projectile_prefab = load("res://Scenes//Enemy_Projectile.tscn");
-var scrap_prefab = load("res://Scenes//ScrapCluster.tscn")
+var projectile_prefab = load("res://Scenes/Enemy_Projectile.tscn");
+var scrap_prefab = load("res://Scenes/ScrapCluster.tscn")
 
 #Fixed Values for movement
 var outer_diameter = 1000;

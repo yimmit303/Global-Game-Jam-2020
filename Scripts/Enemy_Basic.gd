@@ -12,8 +12,8 @@ var target: Node2D
 var target_position;
 var state = "acquiring";
 var states = ["acquiring", "persuing", "attacking"]; #Not actually used, just here for convenience
-var projectile_prefab = load("res://Scenes//Enemy_Projectile.tscn");
-var scrap_prefab = load("res://Scenes//ScrapCluster.tscn")
+var projectile_prefab = load("res://Scenes/Enemy_Projectile.tscn");
+var scrap_prefab = load("res://Scenes/ScrapCluster.tscn")
 
 #Fixed Values for movement
 var outer_diameter = 500;
