@@ -6,11 +6,14 @@ var size
 var velocity
 var directionMoving
 var playerOwned = false
-var playerFired = true
+var playerFired = false
 
 # Mouse Variables
 var overlapped = false
 var dragging = true
+
+var MAX_LIFE_TIME = 5.0
+var fireLifeSpan = MAX_LIFE_TIME
 
 #var follow_mouse = false
 
@@ -50,6 +53,7 @@ func handle_input():
 			dragging = true
 			playerFired = false
 			playerOwned = false
+			fireLifeSpan = MAX_LIFE_TIME
 	else:
 		dragging = false
 
@@ -58,6 +62,11 @@ func _process(delta):
 	if !dragging:
 		#print("not_dragging")
 		if !playerOwned:
+			if playerFired:
+				fireLifeSpan -= delta
+				if(fireLifeSpan <= 0):
+					self.queue_free()
+					
 			velocity *= Globals.VELOCITY_DAMPENING
 			self.set_rotation_degrees(self.get_rotation_degrees() + rot_speed * delta * rot_dir)
 			self.set_position(self.get_position() + directionMoving)
@@ -84,7 +93,6 @@ func get_scrap_images(path):
 func get_final_scrap_layers(constructor_dict):
 	var layer_files = []
 	for i in constructor_dict.keys():
-		
 		if len(constructor_dict[i]) > 1:
 			layer_files.append(constructor_dict[i][randi() % len(constructor_dict[i])])
 		else:
@@ -95,8 +103,10 @@ func generate_scrap_sprite(scrap_dir, scrap_layers):
 	randomize()
 	for layer in scrap_layers:
 		var sprite = Sprite.new()
+		
 		if layer.count("_C_") > 0:
 			sprite.set_modulate(Color.from_hsv(randf(), (randf() * 0.3 + 0.3), 0.74, 1))
+			
 		sprite.texture = load("res://Resources/Scrap/" + scrap_dir + "/" + layer)
 		sprite.scale = Vector2(size, size)
 		self.add_child(sprite)
@@ -123,6 +133,7 @@ func tractor_junk(pointToGetTo, delta):
 	directionMoving += dirToDest * velocity
 
 func set_playerOwned():
+	fireLifeSpan = MAX_LIFE_TIME
 	playerOwned = true
 	playerFired = false
 	directionMoving = Vector2(0, 0)
