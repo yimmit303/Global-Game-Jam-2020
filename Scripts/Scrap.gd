@@ -6,6 +6,7 @@ var size
 var velocity
 var directionMoving
 var playerOwned = false
+var overlapping = false
 
 var follow_mouse = false
 
@@ -108,6 +109,8 @@ func is_playerOwned():
 func fire_trash(direction):
 	directionMoving = direction * Globals.PLAYER_PROJECTILE_SPEED
 
-
 func _on_Area2D_mouse_entered():
 	follow_mouse = true
+
+func _on_Area2D_mouse_exited():
+	overlapping = false
