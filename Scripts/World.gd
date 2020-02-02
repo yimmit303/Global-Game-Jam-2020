@@ -54,4 +54,6 @@ func get_audio_manager():
 	return get_node("../AudioManager")
 
 func player_died():
-	pass
+	get_node("../EndScreen").visible = true
+	get_node("../EndScreen/Label").text += score
+	get_tree().paused = true

@@ -97,7 +97,6 @@ texture = ExtResource( 5 )
 
 [node name="Menu" type="Sprite" parent="."]
 pause_mode = 2
-visible = false
 texture = ExtResource( 3 )
 script = ExtResource( 8 )
 
@@ -140,7 +139,7 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="Menu"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="EndScreen" type="ColorRect" parent="."]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -153,15 +152,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="ColorRect"]
+[node name="Label" type="Label" parent="EndScreen"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -51.5
-margin_top = -7.0
-margin_right = 51.5
-margin_bottom = 7.0
+margin_left = -256.0
+margin_top = -39.0
+margin_right = 256.0
+margin_bottom = 39.0
 custom_fonts/font = SubResource( 6 )
 text = "Your Score was: "
 __meta__ = {
