@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Sprites/ShipExhaust2.png" type="Texture" id=4]
 
-[sub_resource type="OccluderPolygon2D" id=1]
+[sub_resource type="OccluderPolygon2D" id=5]
 polygon = PoolVector2Array( -18.237, -28.0141, -5.18174, -27.8752, -3.93177, -25.9308, -0.112411, -25.9308, 2.04031, -29.2641, 13.0123, -28.9863, 16.8316, -26.0002, 16.0561, 0.819416, 22.006, 1.92125, 22.006, 20.1014, 15.9776, 22.0062, 15.9403, 31.0636, 0.97014, 32.0116, -3.9534, 27.9981, -12.8279, 27.9496, -21.9587, 19.9231 )
 
 [sub_resource type="Curve" id=2]
@@ -137,7 +137,7 @@ __meta__ = {
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2( -0.0460682, 0 )
-occluder = SubResource( 1 )
+occluder = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
