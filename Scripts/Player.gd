@@ -60,8 +60,10 @@ func get_input(delta):
 	if Input.is_action_pressed("gravity_beam"):
 		$ShipComponents/TractorParticles.emitting = true
 		tractoring = true
+		self.get_parent().get_audio_manager().play_looping_sound("Tractor")
 	else:
 		$ShipComponents/TractorParticles.emitting = false
+		self.get_parent().get_audio_manager().stop_looping_sound("Tractor")
 		tractoring = false
 		if(ObjectsHeld.size() > 0):
 			self.get_parent().get_audio_manager().play_sound("TractorShoot")
