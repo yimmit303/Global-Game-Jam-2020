@@ -15,7 +15,10 @@ func _ready():
 	spawnables = []
 	spawnables.append(load("res://Scenes/LightCluster.tscn"))
 	spawnables.append(load("res://Scenes/ScrapCluster.tscn"))
-	
+	var music = AudioStreamPlayer.new()
+	self.add_child(music)
+	music.stream = load("res://Resources/Music/SynthTrack-Final200BPMwav.wav")
+	music.play()
 	pass
 
 func _process(delta):
@@ -46,3 +49,6 @@ func spawn(object, location):
 
 func add_score(in_score):
 	score += in_score
+
+func get_audio_manager():
+	return get_node("../AudioManager")
