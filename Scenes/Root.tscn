@@ -76,7 +76,7 @@ stream = ExtResource( 15 )
 [node name="EnemyShoot" type="AudioStreamPlayer" parent="AudioManager"]
 stream = ExtResource( 14 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+[node name="Music" type="AudioStreamPlayer" parent="AudioManager"]
 stream = ExtResource( 20 )
 autoplay = true
 
