@@ -30,13 +30,13 @@ func _process(delta):
 	dir_list.shuffle()
 	var rot_dir = dir_list[0]
 	
-	var random_chance = 250
+	var random_chance = 100
 	
 	randomize()
 	player_direction = player_direction.rotated(deg2rad(rot_dir * randi() % 50))
 	if (randi() % random_chance) == 0:
 		spawn(spawnables[randi() % len(spawnables)], player.get_position() + player_direction * 1180)
-		random_chance += 100
+		random_chance = 100
 	else:
 		random_chance -= 1
 
