@@ -88,7 +88,6 @@ func _process(delta):
 			self.get_parent().queue_free();
 		attack(delta);
 	else:
-		self.AudioManager.play_sound("Explosion");
 		self.death_timer -= delta;
 		self.get_node("1_N_Turret").scale = Vector2(death_timer * death_timer, death_timer * death_timer);
 		if self.death_timer <= 0:
@@ -102,7 +101,7 @@ func _on_Area2D_area_entered(area):
 	if area.get_parent().has_method("is_playerFired") and area.get_parent().is_playerFired() == true and self.dying == false:
 		self.dying = true;
 		self.explosion.emitting = true;
-		self.AudioManager.play_sound("EnemyShoot");
+		self.AudioManager.play_sound("Explosion");
 	pass # Replace with function body.
 
 
@@ -110,5 +109,5 @@ func _on_Area2D2_area_entered(area):
 	if area.get_parent().has_method("is_playerFired") and area.get_parent().is_playerFired() == true and self.dying == false:
 		self.dying = true;
 		self.explosion.emitting = true;
-		self.AudioManager.play_sound("EnemyShoot");
+		self.AudioManager.play_sound("Explosion");
 	pass # Replace with function body.
