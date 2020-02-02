@@ -32,7 +32,7 @@ func _ready():
 	
 	var rand_index = randi() % Globals.SCRAP_DIR_LIST.size()
 	var scrap_dir = Globals.SCRAP_DIR_LIST[rand_index]
-	var image_file_list = get_scrap_images("res://Resources/Scrap/" + scrap_dir)
+	var image_file_list = get_scrap_images("Resources/Scrap/" + scrap_dir)
 	
 	var scrap_constructor_dict = {}
 	for file in image_file_list:
@@ -108,7 +108,7 @@ func generate_scrap_sprite(scrap_dir, scrap_layers):
 		if layer.count("_C_") > 0:
 			sprite.set_modulate(Color.from_hsv(randf(), (randf() * 0.3 + 0.3), 0.74, 1))
 			
-		sprite.texture = load("res://Resources/Scrap/" + scrap_dir + "/" + layer)
+		sprite.texture = load("Resources/Scrap/" + scrap_dir + "/" + layer)
 		sprite.scale = Vector2(size, size)
 		self.add_child(sprite)
 

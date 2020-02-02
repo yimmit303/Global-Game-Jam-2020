@@ -53,6 +53,8 @@ func get_audio_manager():
 	return get_node("../AudioManager")
 
 func player_died():
+	player.get_camera().offset = Vector2(0,0)
 	get_node("../EndScreen").visible = true
+	get_node("../EndScreen").rect_position = player.position + Vector2(-960, -540)
 	get_node("../EndScreen/Label").text = "Your Score was: "+str(score)
 	get_tree().paused = true
