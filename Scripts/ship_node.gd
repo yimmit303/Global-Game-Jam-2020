@@ -21,6 +21,11 @@ func _on_Node_area_entered(area):
 		var dmgDealt = parObj.get_damage()
 		if(mNodeHealth - dmgDealt < 0):
 			mNodeHealth = 0
+			var playerRoot = self.get_parent().get_parent().get_parent()
+			playerRoot.get_child(0).visible = false
+			playerRoot.get_child(1).emitting = true
+			playerRoot.get_parent().get_audio_manager().play_sound("Explosion")
+			playerRoot.get_parent().player_died()
 		else:
 			mNodeHealth -= dmgDealt
 		load("res://Scripts/CameraShake.gd").shake_camera(get_node("../../Camera2D"), 1.0)
@@ -29,6 +34,8 @@ func _on_Node_area_entered(area):
 	elif(parObj.has_method("get_value")):		# Repair using Junk
 		var healAmt = parObj.get_value()
 		if(healAmt > 0 and mNodeHealth < Globals.MAX_HEALTH and parObj.is_dragged()):
+			var playerRoot = self.get_parent().get_parent().get_parent()
+			playerRoot.get_parent().get_audio_manager().play_sound("Repair")
 			# Handle Incrementing Health and Shield
 			if(mNodeHealth + healAmt > Globals.MAX_HEALTH):
 				var healDiff = (mNodeHealth + healAmt) - Globals.MAX_HEALTH
