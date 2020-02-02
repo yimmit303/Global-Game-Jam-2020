@@ -7,6 +7,8 @@ var velocity
 var directionMoving
 var playerOwned = false
 
+var follow_mouse = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
@@ -34,9 +36,12 @@ func _ready():
 
 
 func _process(delta):
-	velocity *= Globals.VELOCITY_DAMPENING
-	self.set_rotation_degrees(self.get_rotation_degrees() + rot_speed * delta * rot_dir)
-	self.set_position(self.get_position() + directionMoving)
+	if !follow_mouse:
+		velocity *= Globals.VELOCITY_DAMPENING
+		self.set_rotation_degrees(self.get_rotation_degrees() + rot_speed * delta * rot_dir)
+		self.set_position(self.get_position() + directionMoving)
+	else:
+		self.position = get_global_mouse_position()
 
 func get_scrap_images(path):
 	var dir = Directory.new()
@@ -105,4 +110,4 @@ func fire_trash(direction):
 
 
 func _on_Area2D_mouse_entered():
-	print("ding")
+	follow_mouse = true
