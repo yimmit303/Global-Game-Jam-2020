@@ -16,6 +16,7 @@ func _ready():
 	spawnables.append(load("res://Scenes/LightCluster.tscn"))
 	spawnables.append(load("res://Scenes/ScrapCluster.tscn"))
 	spawnables.append(load("res://Scenes/Turret_Assembly.tscn"))
+	spawnables.append(load("res://Scenes/Enemy_Basic.tscn"))
 
 func _process(delta):
 	var player_direction = player.get_direction()
