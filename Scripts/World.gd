@@ -56,5 +56,5 @@ func get_audio_manager():
 
 func player_died():
 	get_node("../EndScreen").visible = true
-	get_node("../EndScreen/Label").text += str(score)
+	get_node("../EndScreen/Label").text = "Your Score was: "+str(score)
 	get_tree().paused = true
