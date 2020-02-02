@@ -68,8 +68,6 @@ func _exit_tree():
 	cluster.global_position = self.global_position;
 	cluster.player_ref = self.target;
 	self.get_parent().get_parent().add_child(cluster);
-	if self.get_parent().get_parent().has_method("add_score"):
-		self.get_parent().get_parent().add_score(100);
 	pass;
 
 
@@ -78,11 +76,15 @@ func _exit_tree():
 func _process(delta):
 	if not dying:
 		cooldown -= 1 * delta;
+		if (self.global_position - self.target.global_position).length() > 2000:
+			self.get_parent().queue_free();
 		attack(delta);
 	else:
 		self.death_timer -= delta;
 		self.get_node("1_N_Turret").scale = Vector2(death_timer * death_timer, death_timer * death_timer);
 		if self.death_timer <= 0:
+			if self.get_parent().get_parent().has_method("add_score"):
+				self.get_parent().get_parent().add_score(100);
 			self.get_parent().queue_free();
 		pass;
 
