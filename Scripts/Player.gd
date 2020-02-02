@@ -127,10 +127,8 @@ func _on_TractorBeam_area_entered(area):
 		if (ObjectsTractoring.size() > 0):
 			if (ObjectsTractoring.find(area.get_parent()) == -1):
 				ObjectsTractoring.append(area.get_parent())
-				print("New tractoringSize: ", ObjectsTractoring.size())
 		else:
 			ObjectsTractoring.append(area.get_parent())
-			print("New tractoringSize: ", ObjectsTractoring.size())
 
 func _on_TractorBeam_area_exited(area):
 	if(area.get_parent().has_method("tractor_junk")):
