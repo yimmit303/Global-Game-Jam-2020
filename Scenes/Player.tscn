@@ -1,9 +1,17 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scripts/ship_node.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Sprites/Ship.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Sprites/ShipExhaust2.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Sprites/Ship_Node_Filters/Ship_Node0_Filter.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Sprites/Ship_Node_Filters/Ship_Node6_Filter.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Sprites/Ship_Node_Filters/Ship_Node4_Filter.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Sprites/Ship_Node_Filters/Ship_Node2_Filter.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Sprites/Ship_Node_Filters/Ship_Node3_Filter.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Sprites/Ship_Node_Filters/Ship_Node7_Filter.png" type="Texture" id=10]
+[ext_resource path="res://Resources/Sprites/Ship_Node_Filters/Ship_Node5_Filter.png" type="Texture" id=11]
+[ext_resource path="res://Resources/Sprites/Ship_Node_Filters/Ship_Node1_Filter.png" type="Texture" id=12]
 
 [sub_resource type="Curve" id=1]
 min_value = -1.0
@@ -30,9 +38,6 @@ scale = 2.0
 scale_random = 1.0
 scale_curve = SubResource( 4 )
 hue_variation_curve = SubResource( 2 )
-
-[sub_resource type="OccluderPolygon2D" id=6]
-polygon = PoolVector2Array( -18.237, -28.0141, -5.18174, -27.8752, -3.93177, -25.9308, -0.112411, -25.9308, 2.04031, -29.2641, 13.0123, -28.9863, 16.8316, -26.0002, 16.0561, 0.819416, 22.006, 1.92125, 22.006, 20.1014, 15.9776, 22.0062, 15.9403, 31.0636, 0.97014, 32.0116, -3.9534, 27.9981, -12.8279, 27.9496, -21.9587, 19.9231 )
 
 [sub_resource type="Curve" id=7]
 _data = [ Vector2( 0.00490196, 0.996622 ), 0.0, 0.161568, 0, 0, Vector2( 1, 0 ), -3.33875, 0.0, 0, 0 ]
@@ -85,6 +90,9 @@ color = Color( 0.00784314, 0.815686, 0.976471, 1 )
 hue_variation = 0.06
 hue_variation_random = 0.56
 
+[sub_resource type="OccluderPolygon2D" id=6]
+polygon = PoolVector2Array( -18.237, -28.0141, -5.18174, -27.8752, -3.93177, -25.9308, -0.112411, -25.9308, 2.04031, -29.2641, 13.0123, -28.9863, 16.8316, -26.0002, 16.0561, 0.819416, 22.006, 1.92125, 22.006, 20.1014, 15.9776, 22.0062, 15.9403, 31.0636, 0.97014, 32.0116, -3.9534, 27.9981, -12.8279, 27.9496, -21.9587, 19.9231 )
+
 [node name="Player" type="Node2D"]
 script = ExtResource( 3 )
 
@@ -92,10 +100,10 @@ script = ExtResource( 3 )
 z_index = -2
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
-margin_left = -960.0
-margin_top = -540.0
-margin_right = 960.0
-margin_bottom = 540.0
+margin_left = -946.08
+margin_top = -537.275
+margin_right = 973.92
+margin_bottom = 542.725
 mouse_filter = 2
 color = Color( 0, 0, 0.133333, 1 )
 __meta__ = {
@@ -123,7 +131,17 @@ __meta__ = {
 [node name="Node0" type="Area2D" parent="ShipParts"]
 script = ExtResource( 1 )
 
+[node name="Health_Filter" type="Sprite" parent="ShipParts/Node0"]
+modulate = Color( 0, 1, 0, 0.196078 )
+light_mask = 2
+position = Vector2( -9.96164, -17.7801 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShipParts/Node0"]
+visible = false
 position = Vector2( -129.09, -95.4083 )
 scale = Vector2( 1, 0.987545 )
 polygon = PoolVector2Array( 111.003, 68.5764, 124.071, 68.5764, 124.02, 69.5463, 125.041, 69.5974, 125.041, 76.4376, 128.002, 76.4376, 128.053, 88.5357, 111.973, 88.5357, 111.973, 87.6169, 111.106, 87.6169, 111.106, 86.596, 110.085, 86.596, 110.085, 69.4953, 111.055, 69.4953 )
@@ -134,7 +152,17 @@ __meta__ = {
 [node name="Node1" type="Area2D" parent="ShipParts"]
 script = ExtResource( 1 )
 
+[node name="Health_Filter" type="Sprite" parent="ShipParts/Node1"]
+modulate = Color( 0, 1, 0, 0.196078 )
+light_mask = 2
+position = Vector2( 7.96651, -18.0879 )
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShipParts/Node1"]
+visible = false
 position = Vector2( -110.366, -95.4083 )
 scale = Vector2( 1, 0.987545 )
 polygon = PoolVector2Array( 111.401, 68.1798, 125.365, 68.249, 125.307, 69.2193, 126.381, 69.2193, 126.381, 70.1895, 127.34, 70.2189, 127.31, 75.3054, 126.352, 75.3054, 126.352, 76.3345, 125.423, 76.3639, 125.336, 80.3625, 126.352, 80.4213, 126.467, 88.4286, 109.374, 88.5085, 109.278, 70.33, 110.468, 70.2323, 110.404, 69.2549, 111.337, 69.2549 )
@@ -145,7 +173,17 @@ __meta__ = {
 [node name="Node2" type="Area2D" parent="ShipParts"]
 script = ExtResource( 1 )
 
+[node name="Health_Filter" type="Sprite" parent="ShipParts/Node2"]
+modulate = Color( 0, 1, 0, 0.196078 )
+light_mask = 2
+position = Vector2( 8.56562, -1.93285 )
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShipParts/Node2"]
+visible = false
 position = Vector2( -110.293, -75.295 )
 scale = Vector2( 1, 0.987545 )
 polygon = PoolVector2Array( 111.324, 68.0429, 126.317, 68.0692, 126.247, 77.265, 127.195, 77.265, 127.207, 80.559, 111.351, 80.4333 )
@@ -156,7 +194,17 @@ __meta__ = {
 [node name="Node3" type="Area2D" parent="ShipParts"]
 script = ExtResource( 1 )
 
+[node name="Health_Filter" type="Sprite" parent="ShipParts/Node3"]
+modulate = Color( 0, 1, 0, 0.196078 )
+light_mask = 2
+position = Vector2( -7.76871, -1.91793 )
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShipParts/Node3"]
+visible = false
 position = Vector2( -126.387, -75.0843 )
 scale = Vector2( 1, 0.987545 )
 polygon = PoolVector2Array( 111.324, 68.0429, 127.433, 68.0042, 127.358, 80.1313, 110.39, 80.0915, 110.349, 76.0496, 111.43, 76.0918 )
@@ -167,7 +215,17 @@ __meta__ = {
 [node name="Node4" type="Area2D" parent="ShipParts"]
 script = ExtResource( 1 )
 
+[node name="Health_Filter" type="Sprite" parent="ShipParts/Node4"]
+modulate = Color( 0, 1, 0, 0.196078 )
+light_mask = 2
+position = Vector2( -8.46087, 9.93602 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShipParts/Node4"]
+visible = false
 position = Vector2( -127.68, -63.052 )
 scale = Vector2( 1, 0.987545 )
 polygon = PoolVector2Array( 111.554, 68.831, 111.641, 67.9447, 127.433, 68.0042, 127.358, 80.1313, 111.685, 80.0435, 111.772, 78.9356, 110.678, 78.9356, 110.766, 68.9197 )
@@ -178,7 +236,17 @@ __meta__ = {
 [node name="Node5" type="Area2D" parent="ShipParts"]
 script = ExtResource( 1 )
 
+[node name="Health_Filter" type="Sprite" parent="ShipParts/Node5"]
+modulate = Color( 0, 1, 0, 0.196078 )
+light_mask = 2
+position = Vector2( 8.12204, 9.94597 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShipParts/Node5"]
+visible = false
 position = Vector2( -110.412, -62.9335 )
 scale = Vector2( 1, 0.987545 )
 polygon = PoolVector2Array( 110.291, 67.8889, 127.433, 68.0042, 127.275, 78.8482, 126.447, 78.9024, 126.446, 79.9281, 110.172, 79.9681 )
@@ -189,7 +257,17 @@ __meta__ = {
 [node name="Node6" type="Area2D" parent="ShipParts"]
 script = ExtResource( 1 )
 
+[node name="Health_Filter" type="Sprite" parent="ShipParts/Node6"]
+modulate = Color( 0, 1, 0, 0.196078 )
+light_mask = 2
+position = Vector2( 8.06507, 24.042 )
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShipParts/Node6"]
+visible = false
 position = Vector2( -112.394, -51.0952 )
 scale = Vector2( 1, 0.987545 )
 polygon = PoolVector2Array( 113.454, 68.0114, 127.433, 68.0042, 127.479, 74.0511, 128.392, 73.9967, 128.285, 83.2466, 127.264, 83.2466, 127.371, 84.1171, 113.454, 84.0627, 113.511, 83.0934, 112.541, 83.0833, 112.487, 73.9967, 113.562, 73.9967 )
@@ -200,17 +278,23 @@ __meta__ = {
 [node name="Node7" type="Area2D" parent="ShipParts"]
 script = ExtResource( 1 )
 
+[node name="Health_Filter" type="Sprite" parent="ShipParts/Node7"]
+modulate = Color( 0, 1, 0, 0.196078 )
+light_mask = 2
+position = Vector2( -8.4924, 21.8051 )
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShipParts/Node7"]
+visible = false
 position = Vector2( -128.365, -51.1743 )
 scale = Vector2( 1, 0.987545 )
 polygon = PoolVector2Array( 112.454, 67.9707, 127.433, 68.0042, 127.424, 72.9704, 126.318, 72.9304, 126.358, 76.0102, 124.304, 76.0502, 124.422, 80.0899, 115.456, 80.2099, 115.456, 76.0902, 113.481, 76.1302, 113.323, 73.0904, 112.414, 73.0104 )
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-position = Vector2( -0.0460682, 0 )
-occluder = SubResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -249,6 +333,13 @@ process_material = SubResource( 12 )
 texture = ExtResource( 4 )
 __meta__ = {
 "_editor_description_": ""
+}
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2( -0.0460682, 0 )
+occluder = SubResource( 6 )
+__meta__ = {
+"_edit_lock_": true
 }
 [connection signal="area_entered" from="ShipParts/Node0" to="ShipParts/Node0" method="_on_Node_area_entered"]
 [connection signal="area_entered" from="ShipParts/Node1" to="ShipParts/Node1" method="_on_Node_area_entered"]

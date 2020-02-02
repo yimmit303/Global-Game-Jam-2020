@@ -7,7 +7,11 @@ var velocity
 var directionMoving
 var playerOwned = false
 
-var follow_mouse = false
+# Mouse Variables
+var overlapped = false
+var dragging = true
+
+#var follow_mouse = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,9 +38,17 @@ func _ready():
 			scrap_constructor_dict[file[0]] = [file]
 	generate_scrap_sprite(scrap_dir, get_final_scrap_layers(scrap_constructor_dict))
 
+func handle_input():
+	if (Input.is_mouse_button_pressed(BUTTON_LEFT) and overlapped):
+		var parObj = self.get_parent()
+		self.get_parent().remove_child(self)
+		parObj.get_parent().add_child(self)
+		dragging = true
+	else:
+		dragging = false
 
 func _process(delta):
-	if !follow_mouse:
+	if !dragging:
 		velocity *= Globals.VELOCITY_DAMPENING
 		self.set_rotation_degrees(self.get_rotation_degrees() + rot_speed * delta * rot_dir)
 		self.set_position(self.get_position() + directionMoving)
@@ -108,6 +120,8 @@ func is_playerOwned():
 func fire_trash(direction):
 	directionMoving = direction * Globals.PLAYER_PROJECTILE_SPEED
 
-
 func _on_Area2D_mouse_entered():
-	follow_mouse = true
+	overlapped = true
+
+func _on_Area2D_mouse_exited():
+	overlapped = false
