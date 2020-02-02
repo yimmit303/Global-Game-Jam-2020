@@ -93,8 +93,7 @@ func _process(delta):
 	handle_particles()
 			
 	self.rotate(Globals.to_rad(mRotVelocity))
-	$Backgound.rotate(Globals.to_rad(-mRotVelocity))
-	
+	$Background.rotate(Globals.to_rad(-mRotVelocity))
 	var radAngle = Globals.to_rad(mRotationDir)
 	mDirectionFacing = Vector2(cos(radAngle), sin(radAngle))
 	
