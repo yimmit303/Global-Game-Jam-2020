@@ -58,9 +58,16 @@ func attack(var delta):
 		self.rotate(delta * rotate_speed);
 		
 	angle = self.get_angle_to(target.global_position);
-	
-	
-	fire_projectile(.75)
+		
+	if self.get_parent().get_parent().has_method("add_score") and self.get_parent().get_parent().score > 2000:
+		fire_projectile(0);
+		self.rotate(-5);
+		fire_projectile(0);
+		self.rotate(10);
+		fire_projectile(.75);
+		self.rotate(-5);
+	else:
+		fire_projectile(.75)
 	
 	
 
