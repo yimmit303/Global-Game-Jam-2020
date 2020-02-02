@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Sprites/ShipExhaust2.png" type="Texture" id=4]
 
-[sub_resource type="OccluderPolygon2D" id=5]
+[sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( -18.237, -28.0141, -5.18174, -27.8752, -3.93177, -25.9308, -0.112411, -25.9308, 2.04031, -29.2641, 13.0123, -28.9863, 16.8316, -26.0002, 16.0561, 0.819416, 22.006, 1.92125, 22.006, 20.1014, 15.9776, 22.0062, 15.9403, 31.0636, 0.97014, 32.0116, -3.9534, 27.9981, -12.8279, 27.9496, -21.9587, 19.9231 )
 
 [sub_resource type="Curve" id=2]
@@ -31,9 +31,9 @@ orbit_velocity_random = 0.0
 linear_accel = -20.0
 radial_accel = 30.0
 scale_curve = SubResource( 3 )
-color = Color( 1, 0.843137, 0, 1 )
-hue_variation = -0.07
-hue_variation_random = 1.0
+color = Color( 0.905882, 0, 1, 1 )
+hue_variation = 0.24
+hue_variation_random = 0.41
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 3 )
@@ -137,7 +137,7 @@ __meta__ = {
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2( -0.0460682, 0 )
-occluder = SubResource( 5 )
+occluder = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -160,7 +160,6 @@ process_material = SubResource( 4 )
 texture = ExtResource( 4 )
 
 [node name="TractorBeam" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TractorBeam"]
 position = Vector2( -0.216578, 2.20744 )
@@ -168,8 +167,7 @@ scale = Vector2( 1, 1.07088 )
 polygon = PoolVector2Array( 13.2644, -29.2896, 3.03353, -29.0507, -6.76868, -59.3558, 0.915247, -62.8, 13.8242, -62.8, 21.8155, -59.3558 )
 
 [node name="TractorPoint" type="Node2D" parent="."]
-visible = false
-position = Vector2( 7.9131, -30.3642 )
+position = Vector2( 7.79102, -24.9924 )
 [connection signal="area_entered" from="ShipParts/Node0" to="ShipParts/Node0" method="_on_Node_area_entered"]
 [connection signal="area_entered" from="ShipParts/Node1" to="ShipParts/Node1" method="_on_Node_area_entered"]
 [connection signal="area_entered" from="ShipParts/Node2" to="ShipParts/Node2" method="_on_Node_area_entered"]

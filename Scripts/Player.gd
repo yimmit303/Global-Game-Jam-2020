@@ -59,13 +59,20 @@ func get_input(delta):
 		tractoring = true
 	else:
 		tractoring = false
+		if(ObjectsHeld.size() > 0):
+			for i in range(ObjectsHeld.size()):
+				var obj = ObjectsHeld[i]
+				ObjectsHeld.remove(i)
+				$TractorPoint.remove_child(obj)
+				self.get_parent().add_child(obj)
+				obj.set_position($TractorPoint.get_global_position())
+				obj.fire_trash(mDirectionFacing)
 
 #Adjust Particle Emitters number of particles Emitting based on speed
 func handle_particles():
 	var particleHolder = $EngineParticles
 	for i in particleHolder.get_child_count():
 		particleHolder.get_child(i).emitting = (mVelocity > 0)
-	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -93,16 +100,18 @@ func _process(delta):
 	
 	# Tractor Objects to Player
 	if(tractoring):
-		for i in ObjectsTractoring:
+		for i in range(ObjectsTractoring.size()):
 			tractorObject(ObjectsTractoring[i], i, delta)
 	
 func tractorObject(obj, index, delta):
 	var pointToReach = $TractorPoint.position
-	if(obj.is_inrange(pointToReach)):
+	if(obj.is_inrange(pointToReach) and ObjectsHeld.size() == 0):
 		ObjectsTractoring.remove(index)
 		ObjectsHeld.append(obj)
 		obj.set_playerOwned()
+		obj.get_parent().remove_child(obj)
 		$TractorPoint.add_child(obj)
+		obj.set_position($TractorPoint.get_position())
 	else:
 		obj.tractor_junk(pointToReach, delta)
 	
@@ -114,13 +123,17 @@ func get_direction():
 
 # Check if tractoring is active, and start pulling in junk to Point
 func _on_TractorBeam_area_entered(area):
-	if(tractoring):
-		for i in ObjectsTractoring:
-			if(area.get_parent().has_method("tractor_junk")):
+	if(area.get_parent().has_method("tractor_junk")):
+		if (ObjectsTractoring.size() > 0):
+			if (ObjectsTractoring.find(area.get_parent()) == -1):
 				ObjectsTractoring.append(area.get_parent())
+				print("New tractoringSize: ", ObjectsTractoring.size())
+		else:
+			ObjectsTractoring.append(area.get_parent())
+			print("New tractoringSize: ", ObjectsTractoring.size())
 
 func _on_TractorBeam_area_exited(area):
 	if(area.get_parent().has_method("tractor_junk")):
-		for i in ObjectsTractoring:
-			if(ObjectsTractoring[i] == area.get_parent()):
-				ObjectsTractoring.erase(area.get_parent())
+		var obj_Index = ObjectsTractoring.find(area.get_parent())
+		if (obj_Index != -1):
+			ObjectsTractoring.remove(obj_Index)
