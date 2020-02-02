@@ -112,12 +112,15 @@ func tractor_junk(pointToGetTo, delta):
 	if(velocity < Globals.MAX_VELOCITY_SPEED):
 		velocity += delta * Globals.MAX_TRACTOR_VELOCITY
 		
-	var dirToDest = (self.position - pointToGetTo).normalized()	
+	var dirToDest = self.position.direction_to(pointToGetTo)	
 	directionMoving += dirToDest * velocity
 
 func set_playerOwned():
 	playerOwned = true
 	directionMoving = Vector2(0, 0)
+	
+func is_dragged():
+	return dragging
 	
 func is_playerOwned():
 	return playerOwned

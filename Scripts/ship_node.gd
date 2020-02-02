@@ -28,14 +28,11 @@ func _on_Node_area_entered(area):
 
 	elif(parObj.has_method("get_value")):		# Repair using Junk
 		var healAmt = parObj.get_value()
-		if(healAmt > 0 and mNodeHealth < Globals.MAX_HEALTH):
+		if(healAmt > 0 and mNodeHealth < Globals.MAX_HEALTH and parObj.is_dragged()):
 			# Handle Incrementing Health and Shield
 			if(mNodeHealth + healAmt > Globals.MAX_HEALTH):
 				var healDiff = (mNodeHealth + healAmt) - Globals.MAX_HEALTH
 				mNodeHealth += healAmt - healDiff
-				
-				#if(mSheild< Globals.MAX_SHEILD):
-				#	mSheild += mSheild + healDiff - Globals.MAX_HEALTH
 				parObj.queue_free()
 			else:
 				print("Heal amount: ",healAmt)

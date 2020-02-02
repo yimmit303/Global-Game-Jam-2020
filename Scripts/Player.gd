@@ -56,23 +56,23 @@ func get_input(delta):
 				mVelocity -= tmp
 				
 	if Input.is_action_pressed("gravity_beam"):
-		$TractorParticles.emitting = true
+		$ShipComponents/TractorParticles.emitting = true
 		tractoring = true
 	else:
-		$TractorParticles.emitting = false
+		$ShipComponents/TractorParticles.emitting = false
 		tractoring = false
 		if(ObjectsHeld.size() > 0):
 			for i in range(ObjectsHeld.size()):
 				var obj = ObjectsHeld[i]
 				ObjectsHeld.remove(i)
-				$TractorPoint.remove_child(obj)
+				$ShipComponents/TractorPoint.remove_child(obj)
 				self.get_parent().add_child(obj)
-				obj.set_position($TractorPoint.get_global_position())
+				obj.set_position($ShipComponents/TractorPoint.get_global_position())
 				obj.fire_trash(mDirectionFacing)
 
 #Adjust Particle Emitters number of particles Emitting based on speed
 func handle_particles():
-	var particleHolder = $EngineParticles
+	var particleHolder = $ShipComponents/EngineParticles
 	for i in particleHolder.get_child_count():
 		particleHolder.get_child(i).emitting = (mVelocity > 0)
 
@@ -95,7 +95,7 @@ func _process(delta):
 	handle_particles()
 			
 	self.rotate(Globals.to_rad(mRotVelocity))
-	$Background.rotate(Globals.to_rad(-mRotVelocity))
+	$ShipComponents/Background.rotate(Globals.to_rad(-mRotVelocity))
 	var radAngle = Globals.to_rad(mRotationDir)
 	mDirectionFacing = Vector2(cos(radAngle), sin(radAngle))
 	
@@ -107,19 +107,19 @@ func _process(delta):
 			tractorObject(ObjectsTractoring[i], i, delta)
 	
 func tractorObject(obj, index, delta):
-	var pointToReach = $TractorPoint.position
+	var pointToReach = $ShipComponents/TractorPoint.position
 	if(obj.is_inrange(pointToReach) and ObjectsHeld.size() == 0):
 		ObjectsTractoring.remove(index)
 		ObjectsHeld.append(obj)
 		obj.set_playerOwned()
 		obj.get_parent().remove_child(obj)
-		$TractorPoint.add_child(obj)
-		obj.set_position($TractorPoint.get_position())
+		$ShipComponents/TractorPoint.add_child(obj)
+		obj.set_position($ShipComponents/TractorPoint.get_position())
 	else:
 		obj.tractor_junk(pointToReach, delta)
 	
 func get_camera():
-	return $Camera2D
+	return $ShipComponents/Camera2D
 	
 func get_direction():
 	return mDirectionFacing.normalized();
