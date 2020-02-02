@@ -90,9 +90,10 @@ func _process(delta):
 
 
 func _on_Area2D_area_entered(area):
-	if area.get_parent().has_method("get_value"):
-		dying = true;
+	if area.get_parent().has_method("is_playerFired") and area.get_parent().is_playerFired() == true and self.dying == false:
+		self.dying = true;
 		self.explosion.emitting = true;
+		self.AudioManager.play_sound("EnemyShoot");
 	pass # Replace with function body.
 
 
