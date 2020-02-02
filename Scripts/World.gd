@@ -15,6 +15,7 @@ func _ready():
 	spawnables = []
 	spawnables.append(load("res://Scenes/LightCluster.tscn"))
 	spawnables.append(load("res://Scenes/ScrapCluster.tscn"))
+	spawnables.append()
 	var music = AudioStreamPlayer.new()
 	self.add_child(music)
 	music.stream = load("res://Resources/Music/SynthTrack-Final200BPMwav.wav")
@@ -55,5 +56,5 @@ func get_audio_manager():
 
 func player_died():
 	get_node("../EndScreen").visible = true
-	get_node("../EndScreen/Label").text += score
+	get_node("../EndScreen/Label").text += str(score)
 	get_tree().paused = true
