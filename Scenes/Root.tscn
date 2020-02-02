@@ -166,5 +166,20 @@ text = "Your Score was: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label2" type="Label" parent="EndScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -252.587
+margin_top = 57.6958
+margin_right = 259.413
+margin_bottom = 297.696
+custom_fonts/font = SubResource( 6 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Menu/Play" to="Menu" method="_on_Play_pressed"]
 [connection signal="pressed" from="Menu/Quit" to="Menu" method="_on_Quit_pressed"]
