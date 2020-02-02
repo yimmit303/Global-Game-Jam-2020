@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Turret.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/Sprites/Rock.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Images/Light_texture.png" type="Texture" id=3]
+
+[node name="Turret Assembly" type="Node2D"]
+
+[node name="Rock" type="Sprite" parent="."]
+light_mask = 2
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="Turret" parent="." instance=ExtResource( 1 )]
+scale = Vector2( 2, 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -3.16309, -5.87433 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+energy = 1.5
+shadow_enabled = true
+shadow_filter = 4
+shadow_filter_smooth = 3.1
+__meta__ = {
+"_editor_description_": ""
+}

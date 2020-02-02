@@ -56,8 +56,10 @@ func get_input(delta):
 				mVelocity -= tmp
 				
 	if Input.is_action_pressed("gravity_beam"):
+		$TractorParticles.emitting = true
 		tractoring = true
 	else:
+		$TractorParticles.emitting = false
 		tractoring = false
 		if(ObjectsHeld.size() > 0):
 			for i in range(ObjectsHeld.size()):

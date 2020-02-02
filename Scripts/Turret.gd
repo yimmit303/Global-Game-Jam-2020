@@ -50,13 +50,7 @@ func attack(var delta):
 	angle = self.get_angle_to(target.global_position);
 	
 	
-	if fire_projectile(0):
-		self.rotate(-.2);
-		fire_projectile(0);
-		self.rotate(.4);
-		fire_projectile(.75);
-		self.rotate(-.2);
-		cdown_short = 0;
+	fire_projectile(.75)
 	
 	
 
