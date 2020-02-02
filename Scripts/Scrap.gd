@@ -41,7 +41,7 @@ func _ready():
 
 	
 func handle_input():
-	if (Input.is_mouse_button_pressed(BUTTON_LEFT)):
+	if (Input.is_mouse_button_pressed(BUTTON_LEFT) and  !playerOwned):
 		if(overlapped):
 			var parObj = self.get_parent()
 			if(parObj.get_name() != "World"):
@@ -61,7 +61,7 @@ func _process(delta):
 			velocity *= Globals.VELOCITY_DAMPENING
 			self.set_rotation_degrees(self.get_rotation_degrees() + rot_speed * delta * rot_dir)
 			self.set_position(self.get_position() + directionMoving)
-	else:
+	elif !playerOwned:
 		self.set_position(get_global_mouse_position())
 
 func get_scrap_images(path):

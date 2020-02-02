@@ -42,8 +42,6 @@ func _on_Node_area_entered(area):
 				mNodeHealth += healAmt - healDiff
 				parObj.queue_free()
 			else:
-				print("Heal amount: ",healAmt)
-				print("CurrentHealth: ",mNodeHealth)
 				mNodeHealth += healAmt
 				parObj.queue_free()
 			adjust_health_filter()
