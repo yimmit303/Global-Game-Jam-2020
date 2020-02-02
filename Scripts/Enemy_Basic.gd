@@ -4,6 +4,7 @@ extends Node2D
 var dying = false;
 var explosion;
 var death_timer = 1;
+var AudioManager;
 
 #Values intended for logic
 export(NodePath) var goal;
@@ -29,8 +30,9 @@ var velocity = 0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	target = get_node(goal);
-	explosion = get_node("ExplosionParticle");
+	self.target = get_node(goal);
+	self.explosion = get_node("ExplosionParticle");
+	self.AudioManager = self.get_parent().get_parent().get_node("AudioManager");
 	pass # Replace with function body.
 
 
@@ -43,6 +45,7 @@ func fire_projectile(var cdown = .5) -> bool:
 	proj.velocity = (self.global_transform.x * (self.velocity + 300));
 	self.get_parent().add_child(proj);
 	self.cooldown = cdown;
+	self.AudioManager.play_sound("EnemyShoot");
 	return true;
 
 

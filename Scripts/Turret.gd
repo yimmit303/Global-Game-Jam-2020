@@ -4,13 +4,14 @@ extends Node2D
 var explosion;
 var dying = false;
 var death_timer = .9;
+var AudioManager;
 
 #Values intended for logic
 export(NodePath) var goal;
 var target: Node2D
 var target_position;
 var projectile_prefab = load("res://Scenes//Enemy_Projectile.tscn");
-var scrap_prefab = load("res://scenes//ScrapCluster.tscn");
+var scrap_prefab = load("res://Scenes//ScrapCluster.tscn")
 
 #Fixed Values for movement
 var outer_diameter = 1000;
@@ -25,6 +26,7 @@ var cdown_short: int = 0
 func _ready():
 	target = get_node(goal)
 	explosion = get_node("ExplosionParticle");
+	self.AudioManager = self.get_parent().get_parent().get_parent().get_node("AudioManager");
 	pass # Replace with function body.
 
 
