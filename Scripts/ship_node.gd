@@ -16,8 +16,9 @@ func adjust_health_filter():
 # Collision handeling for Node, gets damage from other Object if its hostile
 # If other object has get_val / is a scrap item, if held the item will heal or add to shield
 func _on_Node_area_entered(area):
-	if(area.get_parent().has_method("get_damage")):		# Enemy bullet
-		var dmgDealt = area.get_parent().get_damage()
+	var parObj = area.get_parent()
+	if(parObj.has_method("get_damage")):		# Enemy bullet
+		var dmgDealt = parObj.get_damage()
 		if(mNodeHealth - dmgDealt < 0):
 			mNodeHealth = 0
 		else:
@@ -25,12 +26,9 @@ func _on_Node_area_entered(area):
 		load("res://Scripts/CameraShake.gd").shake_camera(get_node("../../Camera2D"), 1.0)
 		adjust_health_filter()
 
-	elif(area.get_parent().get_parent().has_method("get_value")):		# Repair using Junk
-		print("medic!!")
-		var healAmt = area.get_value()
-		print("Heal amount: ",healAmt)
-		print("CurrentHealth: ",mNodeHealth)
-		if(healAmt > 0):
+	elif(parObj.has_method("get_value")):		# Repair using Junk
+		var healAmt = parObj.get_value()
+		if(healAmt > 0 and mNodeHealth < Globals.MAX_HEALTH):
 			# Handle Incrementing Health and Shield
 			if(mNodeHealth + healAmt > Globals.MAX_HEALTH):
 				var healDiff = (mNodeHealth + healAmt) - Globals.MAX_HEALTH
@@ -38,9 +36,11 @@ func _on_Node_area_entered(area):
 				
 				#if(mSheild< Globals.MAX_SHEILD):
 				#	mSheild += mSheild + healDiff - Globals.MAX_HEALTH
-				area.get_parent().queue_free()
+				parObj.queue_free()
 			else:
+				print("Heal amount: ",healAmt)
+				print("CurrentHealth: ",mNodeHealth)
 				mNodeHealth += healAmt
-				area.get_parent().queue_free()
-		adjust_health_filter()
+				parObj.queue_free()
+			adjust_health_filter()
 		

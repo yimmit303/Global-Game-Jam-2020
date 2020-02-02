@@ -38,22 +38,27 @@ func _ready():
 			scrap_constructor_dict[file[0]] = [file]
 	generate_scrap_sprite(scrap_dir, get_final_scrap_layers(scrap_constructor_dict))
 
+	
 func handle_input():
-	if (Input.is_mouse_button_pressed(BUTTON_LEFT) and overlapped):
-		var parObj = self.get_parent()
-		self.get_parent().remove_child(self)
-		parObj.get_parent().add_child(self)
-		dragging = true
+	if (Input.is_mouse_button_pressed(BUTTON_LEFT)):
+		if(overlapped):
+			var parObj = self.get_parent()
+			if(parObj.get_name() != "World"):
+				self.get_parent().remove_child(self)
+				parObj.get_parent().add_child(self)
+			dragging = true
 	else:
 		dragging = false
 
 func _process(delta):
+	handle_input()
 	if !dragging:
+		#print("not_dragging")
 		velocity *= Globals.VELOCITY_DAMPENING
 		self.set_rotation_degrees(self.get_rotation_degrees() + rot_speed * delta * rot_dir)
 		self.set_position(self.get_position() + directionMoving)
 	else:
-		self.position = get_global_mouse_position()
+		self.set_position(get_global_mouse_position())
 
 func get_scrap_images(path):
 	var dir = Directory.new()
