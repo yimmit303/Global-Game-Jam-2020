@@ -26,7 +26,7 @@ func _process(delta):
 	dir_list.shuffle()
 	var rot_dir = dir_list[0]
 	
-	var random_chance = 500
+	var random_chance = 250
 	
 	randomize()
 	player_direction = player_direction.rotated(deg2rad(rot_dir * randi() % 50))
