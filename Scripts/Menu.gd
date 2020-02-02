@@ -9,16 +9,6 @@ extends Sprite
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().paused = true
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-func _input(event):
-	if event is InputEventMouseButton:
-		print(get_global_mouse_position())
 
 func _on_Play_pressed():
 	$Tween.interpolate_property(self, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.5, Tween.TRANS_EXPO, Tween.EASE_OUT)
@@ -28,8 +18,6 @@ func _on_Play_pressed():
 	get_tree().paused = false
 	$MenuCamera.current = false
 	self.queue_free()
-	pass # Replace with function body.
-
 
 func _on_Quit_pressed():
 	get_tree().quit()
