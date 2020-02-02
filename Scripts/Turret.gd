@@ -68,6 +68,8 @@ func _exit_tree():
 	cluster.global_position = self.global_position;
 	cluster.player_ref = self.target;
 	self.get_parent().get_parent().add_child(cluster);
+	if self.get_parent().get_parent().has_method("add_score"):
+		self.get_parent().get_parent().add_score(100);
 	pass;
 
 
