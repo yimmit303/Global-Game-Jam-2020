@@ -23,7 +23,7 @@ static func shake_camera(camera : Node2D, intensity):
 	
 	var last_moved = shake_dist
 	
-	for i in range(10):
+	for _i in range(10):
 		tween.interpolate_property(camera, "offset", 
 		camera.offset, camera.offset + (direction * shake_dist * effect_scale) + (direction * last_moved)
 		, 0.05, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
