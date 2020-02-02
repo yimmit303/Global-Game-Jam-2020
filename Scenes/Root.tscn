@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Enemy_Basic.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Resources/monofonto.ttf" type="DynamicFontData" id=17]
 [ext_resource path="res://Resources/Sound/Explosion.wav" type="AudioStream" id=18]
 [ext_resource path="res://Scripts/EndScreen.gd" type="Script" id=19]
+[ext_resource path="res://Resources/Music/SynthTrack-Final200BPMwav.wav" type="AudioStream" id=20]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.233333, 0.561111, 1 )
@@ -74,6 +75,10 @@ stream = ExtResource( 15 )
 
 [node name="EnemyShoot" type="AudioStreamPlayer" parent="AudioManager"]
 stream = ExtResource( 14 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource( 20 )
+autoplay = true
 
 [node name="World" type="Node2D" parent="."]
 script = ExtResource( 4 )
