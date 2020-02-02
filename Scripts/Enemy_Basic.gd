@@ -165,7 +165,8 @@ func _process(delta):
 		attack(delta);
 
 func _on_Area2D_area_entered(area):
-	if area.get_parent().has_method("get_value"):
+	if area.get_parent().has_method("get_value") and self.dying == false:
 		self.dying = true;
 		self.explosion.emitting = true;
+		self.AudioManager.play_sound("EnemyShoot");
 	pass # Replace with function body.
