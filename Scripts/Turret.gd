@@ -92,7 +92,8 @@ func _on_Area2D_area_entered(area):
 
 
 func _on_Area2D2_area_entered(area):
-	if area.get_parent().has_method("get_value"):
-		dying = true;
+	if area.get_parent().has_method("get_value") and self.dying == false:
+		self.dying = true;
 		self.explosion.emitting = true;
+		self.AudioManager.play_sound("EnemyShoot");
 	pass # Replace with function body.
