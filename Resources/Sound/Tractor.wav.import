@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Tractor.wav-b9c061e8ee8551766bb3a97fd648364d.sample"
+
+[deps]
+
+source_file="res://Resources/Sound/Tractor.wav"
+dest_files=[ "res://.import/Tractor.wav-b9c061e8ee8551766bb3a97fd648364d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
