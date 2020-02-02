@@ -24,7 +24,7 @@ var cdown_short: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	target = get_node(goal)
+	self.target = get_node("..").get_node("..").get_node("Player");
 	explosion = get_node("ExplosionParticle");
 	self.AudioManager = self.get_parent().get_parent().get_parent().get_node("AudioManager");
 	pass # Replace with function body.
@@ -79,6 +79,7 @@ func _process(delta):
 		attack(delta);
 	else:
 		self.death_timer -= delta;
+		self.get_node("1_N_Turret").scale = Vector2(death_timer * death_timer, death_timer * death_timer);
 		if self.death_timer <= 0:
 			self.get_parent().queue_free();
 		pass;
@@ -92,7 +93,7 @@ func _on_Area2D_area_entered(area):
 
 
 func _on_Area2D2_area_entered(area):
-	if area.get_parent().has_method("get_value") and self.dying == false:
+	if area.get_parent().has_method("is_playerFired") and area.get_parent().is_playerFired() == true and self.dying == false:
 		self.dying = true;
 		self.explosion.emitting = true;
 		self.AudioManager.play_sound("EnemyShoot");
