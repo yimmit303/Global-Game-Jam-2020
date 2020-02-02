@@ -88,7 +88,7 @@ func is_inrange(pointToCheck):
 # Modifys the junk floating by the direction being pulled and the increase in velocity towards that direction
 func tractor_junk(pointToGetTo, delta):
 	if(velocity < Globals.MAX_VELOCITY_SPEED):
-		velocity += delta * Globals.MAX_VELOCITY_SPEED
+		velocity += delta * Globals.MAX_TRACTOR_VELOCITY
 		
 	var dirToDest = (self.position - pointToGetTo).normalized()	
 	directionMoving += dirToDest * velocity
@@ -102,4 +102,3 @@ func is_playerOwned():
 	
 func fire_trash(direction):
 	directionMoving = direction * Globals.PLAYER_PROJECTILE_SPEED
-	print("firing trash in direction: ",directionMoving)

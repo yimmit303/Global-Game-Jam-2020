@@ -5,20 +5,20 @@
 [ext_resource path="res://Resources/Sprites/ShipExhaust2.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/World.gd" type="Script" id=4]
 
-[sub_resource type="Curve" id=2]
+[sub_resource type="Curve" id=1]
 min_value = -1.0
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.340686, -1 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=3]
-curve = SubResource( 2 )
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.973039, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=1]
+[sub_resource type="ParticlesMaterial" id=5]
 emission_shape = 2
 emission_box_extents = Vector3( 750, 450, 1 )
 flag_disable_z = true
@@ -28,8 +28,8 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 2.0
 scale_random = 1.0
-scale_curve = SubResource( 5 )
-hue_variation_curve = SubResource( 3 )
+scale_curve = SubResource( 4 )
+hue_variation_curve = SubResource( 2 )
 
 [node name="Root" type="Node2D"]
 
@@ -46,7 +46,7 @@ follow_viewport_enable = true
 [node name="Particles2D" type="Particles2D" parent="World/Foreground/Player"]
 amount = 128
 local_coords = false
-process_material = SubResource( 1 )
+process_material = SubResource( 5 )
 texture = ExtResource( 3 )
 
 [node name="TestEnemy" parent="World/Foreground" instance=ExtResource( 2 )]

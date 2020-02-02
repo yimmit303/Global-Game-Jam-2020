@@ -16,6 +16,7 @@ func _on_Node_area_entered(area):
 			mNodeHealth = 0
 		else:
 			mNodeHealth -= dmgDealt
+		load("res://Scripts/CameraShake.gd").shake_camera(get_node("../../Camera2D"), 1.0)
 		
 	elif(area.get_parent().has_method("get_val")):		# Repair using Junk
 		var healAmt = area.get_val()

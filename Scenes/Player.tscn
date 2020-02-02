@@ -164,7 +164,7 @@ texture = ExtResource( 4 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TractorBeam"]
 position = Vector2( -0.216578, 2.20744 )
 scale = Vector2( 1, 1.07088 )
-polygon = PoolVector2Array( 13.2644, -29.2896, 3.03353, -29.0507, -6.76868, -59.3558, 0.915247, -62.8, 13.8242, -62.8, 21.8155, -59.3558 )
+polygon = PoolVector2Array( 13.2644, -29.2896, 3.03353, -29.0507, -15.9432, -83.22, -0.68234, -88.2363, 13.7239, -88.3503, 28.2522, -83.4481 )
 
 [node name="TractorPoint" type="Node2D" parent="."]
 position = Vector2( 7.79102, -24.9924 )
