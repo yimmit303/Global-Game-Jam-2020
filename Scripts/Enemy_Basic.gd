@@ -172,4 +172,5 @@ func _on_Area2D_area_entered(area):
 		self.dying = true;
 		self.explosion.emitting = true;
 		self.AudioManager.play_sound("EnemyShoot");
+		self.AudioManager.play_sound("Explosion");
 	pass # Replace with function body.

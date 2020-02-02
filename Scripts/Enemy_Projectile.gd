@@ -5,7 +5,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 export(Vector2) var velocity;
-var life = 1;
+var life = 3;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

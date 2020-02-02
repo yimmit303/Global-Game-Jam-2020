@@ -61,11 +61,11 @@ func attack(var delta):
 		
 	if self.get_parent().get_parent().has_method("add_score") and self.get_parent().get_parent().score > 2000:
 		fire_projectile(0);
-		self.rotate(-5);
+		self.rotate(-.25);
 		fire_projectile(0);
-		self.rotate(10);
+		self.rotate(.5);
 		fire_projectile(.75);
-		self.rotate(-5);
+		self.rotate(-.25);
 	else:
 		fire_projectile(.75)
 	
@@ -88,6 +88,7 @@ func _process(delta):
 			self.get_parent().queue_free();
 		attack(delta);
 	else:
+		self.AudioManager.play_sound("Explosion");
 		self.death_timer -= delta;
 		self.get_node("1_N_Turret").scale = Vector2(death_timer * death_timer, death_timer * death_timer);
 		if self.death_timer <= 0:
