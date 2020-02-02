@@ -15,7 +15,7 @@ func _ready():
 	spawnables = []
 	spawnables.append(load("res://Scenes/LightCluster.tscn"))
 	spawnables.append(load("res://Scenes/ScrapCluster.tscn"))
-	spawnables.append()
+	spawnables.append(load("res://Scenes/Turret_Assembly.tscn"))
 	var music = AudioStreamPlayer.new()
 	self.add_child(music)
 	music.stream = load("res://Resources/Music/SynthTrack-Final200BPMwav.wav")
