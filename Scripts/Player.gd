@@ -37,6 +37,7 @@ func get_input(delta):
 
 	# Handle Acceleration
 	if Input.is_action_pressed("move_forward"):
+		self.get_parent().get_audio_manager().play_looping_sound("Engine")
 		if (mVelocity < Globals.MAX_VELOCITY_SPEED):
 			var tmp = delta * Globals.MAX_VELOCITY_SPEED
 			if(mVelocity + tmp > Globals.MAX_VELOCITY_SPEED):
@@ -48,6 +49,7 @@ func get_input(delta):
 		mVelocity *= Globals.VELOCITY_DAMPENING
 		
 	if Input.is_action_pressed("move_backwards"):
+		self.get_parent().get_audio_manager().stop_looping_sound("Engine")
 		if (mVelocity > 0):
 			var tmp = delta * Globals.MAX_VELOCITY_SPEED
 			if (mVelocity - tmp < 0):
@@ -62,6 +64,7 @@ func get_input(delta):
 		$ShipComponents/TractorParticles.emitting = false
 		tractoring = false
 		if(ObjectsHeld.size() > 0):
+			self.get_parent().get_audio_manager().play_sound("TractorShoot")
 			for i in range(ObjectsHeld.size()):
 				var obj = ObjectsHeld[i]
 				ObjectsHeld.remove(i)
@@ -90,6 +93,7 @@ func _process(delta):
 			mRotationDir += 360
 	if (mVelocity > 0):
 		if(mVelocity < Globals.VELOCITY_CUTTOFF):
+			self.get_parent().get_audio_manager().stop_looping_sound("Engine")
 			mVelocity = 0
 			
 	handle_particles()
@@ -98,7 +102,6 @@ func _process(delta):
 	$ShipComponents/Background.rotate(Globals.to_rad(-mRotVelocity))
 	var radAngle = Globals.to_rad(mRotationDir)
 	mDirectionFacing = Vector2(cos(radAngle), sin(radAngle))
-	
 	self.set_position(self.get_position() + mDirSpeed)
 	
 	# Tractor Objects to Player
